@@ -265,3 +265,5 @@ Knowing these voltages, it is also possible to determine any components' voltage
   \caption{Voltages and currents of some circuit components}
   \label{tab:valn}
 \end{table}
+
+By comparing the results for the voltages and the branch currents obtained by both methods, we confirm that both results match precisely. Later, we will verify that the simulation results, using NGSPice, also match the theoretical analysis for both methods. Note that some quantities vary only in signal (for example, the current in R1 obtained by the mesh method is the simmetrical of the current in this branch obtained by the second method) - this happens because the sense of the current assigned for each branch varies for each method. However, this does not affect our results, since it only means that, in case of a negative quantity, the true current sense flowing through the component is, in fact, opposite to the one we assumed.
