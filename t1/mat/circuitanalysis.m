@@ -33,10 +33,10 @@ clear all
  Im=Am\Bm;                                              %mesh currents array
  
  printf("Mesh_MTAB \n");                                %mesh table
- printf("$I_{A}$ = %g \n", Im(1));
- printf("$I_{B}$ = %g \n", Im(2));
- printf("$I_{C}$ = %g \n", Im(3));
- printf("$I_{D}$ = %g \n", Im(4));
+ printf("$I_{A}$ = %e \n", Im(1));
+ printf("$I_{B}$ = %e \n", Im(2));
+ printf("$I_{C}$ = %e \n", Im(3));
+ printf("$I_{D}$ = %e \n", Im(4));
  printf("Mesh_MEND \n\n");
 
  printf("It is now possible to determine:\n");
@@ -53,17 +53,17 @@ clear all
  I7=Im(3);
  
  printf("ValM_MMTAB\n");                               %Vb, Ib, Vc, Ic
- printf("$V_{b}$ = %g \n", Vb_m);
- printf("$I_{b}$ = %g \n", Ib_m);
- printf("$V_{c}$ = %g \n", Vc_m);
- printf("$I_{c}$ = %g \n", Ic_m);
- printf("$I_{R1}$ = %g \n", I1);
- printf("$I_{R2}$ = %g \n", I2);
- printf("$I_{R3}$ = %g \n", I3);
- printf("$I_{R4}$ = %g \n", I4);
- printf("$I_{R5}$ = %g \n", I5);
- printf("$I_{R6}$ = %g \n", I6);
- printf("$I_{R7}$ = %g \n", I7);
+ printf("$V_{b}$ = %e \n", Vb_m);
+ printf("$I_{b}$ = %e \n", Ib_m);
+ printf("$V_{c}$ = %e \n", Vc_m);
+ printf("$I_{c}$ = %e \n", Ic_m);
+ printf("$I_{R1}$ = %e \n", I1);
+ printf("$I_{R2}$ = %e \n", I2);
+ printf("$I_{R3}$ = %e \n", I3);
+ printf("$I_{R4}$ = %e \n", I4);
+ printf("$I_{R5}$ = %e \n", I5);
+ printf("$I_{R6}$ = %e \n", I6);
+ printf("$I_{R7}$ = %e \n", I7);
  printf("ValM_MMEND \n");
 
  %---Node Analysis---
@@ -82,13 +82,13 @@ clear all
  Vn=An\Bn;                                           %nodal voltages array
   
  printf("Nodal_NTAB \n");                             %nodal table
- printf("$V_{1}$ = %g \n", Vn(1));                   
- printf("$V_{2}$ = %g \n", Vn(2));
- printf("$V_{3}$ = %g \n", Vn(3));
- printf("$V_{4}$ = %g \n", Vn(4));
- printf("$V_{5}$ = %g \n", Vn(5));
- printf("$V_{6}$ = %g \n", Vn(6));
- printf("$V_{7}$ = %g \n", Vn(7));
+ printf("$V_{1}$ = %e \n", Vn(1));                   
+ printf("$V_{2}$ = %e \n", Vn(2));
+ printf("$V_{3}$ = %e \n", Vn(3));
+ printf("$V_{4}$ = %e \n", Vn(4));
+ printf("$V_{5}$ = %e \n", Vn(5));
+ printf("$V_{6}$ = %e \n", Vn(6));
+ printf("$V_{7}$ = %e \n", Vn(7));
  printf("Nodal_NEND \n \n");
 
  printf("It is now possible to determine:\n");
@@ -96,9 +96,23 @@ clear all
  Vc_n=Kc*Ic_n;
  Vb_n=Vn(2);
  Ib_n=Kb*Vb_n;
+ i1=(Vn(2)-Vn(1))*G1;
+ i2=(Vn(3)-Vn(2))*G2;
+ i3=(Vn(2)-0)*G3;
+ i4=(0-Vn(7))*G4;
+ i5=(Vn(4)-0)*G5;
+ i6=(Vn(7)-Vn(6))*G6;
+ i7=(Vn(6)-Vn(5))*G7;
  printf("ValN_MNTAB\n");                             %Vb, Ib, Vc, Ic
- printf("$V_{b}$ = %g \n", Vb_n);
- printf("$I_{b}$ = %g \n", Ib_n);
- printf("$V_{c}$ = %g \n", Vc_n);
- printf("$I_{c}$ = %g \n", Ic_n);
+ printf("$V_{b}$ = %e \n", Vb_n);
+ printf("$I_{b}$ = %e \n", Ib_n);
+ printf("$V_{c}$ = %e \n", Vc_n);
+ printf("$I_{c}$ = %e \n", Ic_n);
+ printf("$I_{R1}$ = %e \n", i1);
+ printf("$I_{R2}$ = %e \n", i2);
+ printf("$I_{R3}$ = %e \n", i3);
+ printf("$I_{R4}$ = %e \n", i4);
+ printf("$I_{R5}$ = %e \n", i5);
+ printf("$I_{R6}$ = %e \n", i6);
+ printf("$I_{R7}$ = %e \n", i7);
  printf("ValN_MNEND\n");
