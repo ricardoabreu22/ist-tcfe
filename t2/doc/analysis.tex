@@ -14,7 +14,7 @@ A capacitor is an electrical component that behaves according to the following d
 
 Thereafter, the current of a capacitor is not proportional to the voltage in its terminals, but rather to the voltage variation rate.
 
-\subsection{Voltages in ALl Nodes and Currents in All Branches}
+\subsection{Voltages in All Nodes and Currents in All Branches}
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.4\linewidth]{mcurrents.pdf}
@@ -24,10 +24,10 @@ Thereafter, the current of a capacitor is not proportional to the voltage in its
 
 For t\textless 0, -t\textgreater 0. Because of that u(t)=0 and u(-t)=1. So:
 \begin{equation}
-  V_S(t<0)=V_s
+  v_S(t<0)=V_s
 \end{equation}
 
-That means that the voltage source drives constant voltage Vs, in other words, the voltage doesn't varies in time.
+That means that the voltage source drives constant voltage $V_s$, in other words, the voltage doesn't varies in time.
 Consequently, the current of the capacitor is null:
 \begin{equation}
   I_c=0
@@ -72,7 +72,7 @@ The solution of this matricial equation is determined by Octave:
   \label{tab:nodal}
 \end{table}
 
-Knowing these voltages, it is also possible to determine branch currents, using Ohm’s Law or Kirchoff's Laws.
+Knowing these voltages, it is also possible to determine branch currents, using Ohm’s Law and Kirchoff's Laws.
 Note that:
 \begin{equation}
   I_S=I_1
@@ -88,21 +88,46 @@ Note that:
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Current[A]} \\ \hline
     \input{../mat/ValN_tab}
   \end{tabular}
-  \caption{Voltages and currents of some circuit components}
+  \caption{Voltages and currents of circuit components}
   \label{tab:valn}
 \end{table}
 
-\subsection{Equivalent Resistance}
-The objective of this task is to calculate Req and $I_x$ as seen in terminals of the voltage source substituting the capacitator. It is known that:
-\begin{equation}
-   R_eq= \frac{V_x}{I_x}
-\end{equation}
-In order to solve this task, we used the concept of the Thévenin and Norton Theorems.\par
-The matrix equation used in the octave tool is the following:
+\subsection{Equivalent Resistance, $R_{eq}$}
+The objective of this task is to calculate $R_{eq}$ as seen in terminals of the capacitor. That can be useful to study the circuit and the variation of its nodal values for t = 0.
+In order to solve it, we used the concept of the Thévenin and Norton Theorems.\par
+These theorems state that all linear circuits of sources and resistors can be substituted by a simpler circuit with an equivalent resistor and a voltage or current source, respectively, from a chosen point of view.
 
+In that way, we first replaced the capcitor by an independent voltage source $V_x$ and, then, we put the independent voltage source $V_s$ to 0V. It is important to notice that the depedent voltage source cannot be put equal to 0V and the dependent current source cannot be removed from the circuit.
+
+The analysed circuit is represented on figure ~\ref{fig:circuit22}.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{nvoltages.pdf}
+\caption{Circuit Analysed}
+\label{fig:circuit22}
+\end{figure}
+
+Although the voltage in the nodes is not necessarily continuous, the difference pottencial in the capacitor, wich is given by the difference between nodes 6 and 8, is.
+Therefore, we considered:
+\begin{equation}
+   V_{x}= V_6-V_8
+\end{equation}
+, where $V_6$ and $V_8$ are the voltages in nodes 6 and 8 obtained in the previous subsection.
+
+Then, we run the node analysis to determine the current $I_x$ in order to determine the $R_{eq}$ by using Ohm's Law:
+\begin{equation}
+   R_{eq}= \frac{V_x}{I_x}
+\end{equation}
+
+This way, we can also determine the time constante:
+\begin{equation}
+   \tau = R_{eq} \cdot C
+\end{equation}
+
+The matrix equation used in the octave tool is the following:
 \begin{gather}
 	\begin{bmatrix}
 		1 & 0 & 0 & 0 & 0 & 0 & 0 \\

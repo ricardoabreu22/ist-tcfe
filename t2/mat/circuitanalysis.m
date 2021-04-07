@@ -94,7 +94,7 @@ fclose (data);
  i5=(Vn(4)-Vn(5))*G5;
  i6=(0-Vn(6))*G6;
  i7=(Vn(6)-Vn(7))*G7;
- is=i1;
+ is=-i1;
  ib=Kb*(Vn(2)-Vn(4));
  ivd=-i7;
  ic=0;
