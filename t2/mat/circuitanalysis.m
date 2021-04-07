@@ -287,10 +287,12 @@ endfor
   printf("Val42_END42 \n \n");
  temp=0:1e-6:20e-3;
  V6f=polar(5,1)*cos(w*temp-polar(5,2));
+ 
  yf=figure(2);
  plot(temp*1000,V6f,"r");
  xlabel("t [ms]");
- ylabel("V6n [V]");
+ ylabel("V6f [V]");
+ legend("vf6","location","northeast");
  grid on;
  print(yf, "Forced4.eps", "-depsc");
  close(yf);

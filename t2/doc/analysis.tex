@@ -164,7 +164,7 @@ And the results obtained are expressed in this table:
   \label{tab:val22}
 \end{table}
 
-\subsection{Natural Solution, $t \geqslant $ 0}
+\subsection{Natural Solution, t $\ge$ 0}
 
 This tasks' objective is to compute the natural solution of the voltage in node 6. Using the results previously obtained in task 2, we  obtained the value of the voltage in this node when t= 0 seconds and $v_{6n}$(t=0s)=$V_x$ , since the result obtain for v8 is zero in the previous task.
 
@@ -186,14 +186,14 @@ The following plot was obtained using the octave tool and it shows the graph obt
 \label{fig:point3}
 \end{figure}
 
-\subsection{Point 4}
+\subsection{Forced Solution, t $\ge$ 0}
 In order to compute the forced solution for the voltage in node 6,it was utilized the same time interval considered in the previous task.
 \par But to calculate the forced solution, we need to used the regular circuit and to do that we assumed a phasor Vs and substituited the capacitor C for its impedance, Zc.
 \par The phasor used was:
 \begin{equation}
-V_s = \exp(-i\cdot \frac{pi}{2})
+V_s = \exp(-i\cdot \frac{\pi}{2})
 \end{equation}
-And the formula to obtain Zc is:
+And the formula to obtain $Z_c$ is:
 \begin{equation}
 Z_c= \frac{1}{i\cdot C \cdot \omega}
 \end{equation}
@@ -216,7 +216,7 @@ The result obtained can be seen in the plot below:
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.6\linewidth]{Forced4.eps}
-\caption{Final response.}
+\caption{Forced response.}
 \label{fig:point4}
 \end{figure}
 
@@ -225,10 +225,10 @@ The phasor amplitude values and phases were also computed in this task and can b
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Value [V]} \\ \hline
     \input{../mat/Val41_tab}
   \end{tabular}
-  \caption{Amp}
+  \caption{Amplitude}
   \label{tab:amp}
 \end{table}
 
@@ -236,27 +236,28 @@ The phasor amplitude values and phases were also computed in this task and can b
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Value [rad]} \\ \hline
     \input{../mat/Val42_tab}
   \end{tabular}
-  \caption{Voltages and currents of some circuit components}
+  \caption{Phase}
   \label{tab:phases}
 \end{table}
 
-\subsection{Point 5}
+\subsection{Final Total Solution}
 The total solution for the node 6 for a frequency,f = 1000 Hz was calculated by superimposing
-the forced and the natural solution for t maior ou igual 0. For t menor0 , the voltage in node 6 is the
+the forced and the natural solution for t $\ge$ 0. For t $<$0 , the voltage in node 6 is the
 one calculated in the first task. This gives us the following function for v6:
 
-%\begin{equation}
-%v_6t
-%\begin {cases}
-%V_6 & $t$ <0 \\
-%v_6n + v_6A * cos(\omega *t - v_6Ph)
-%\end{cases}
-%\end{equation}
+\begin{equation}
+v_6t=
+\begin{cases}
+V_6 & $t$ <0 \\
+v_6n + v_6A * cos(\omega *t - v_6Ph)
+\end{cases}
+\label {eq:v6t}
+\end{equation}
 
-The total solution was plotted together with vs and this is the result obtained:
+The total solution was plotted together with $v_s$ and this is the result obtained:
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.6\linewidth]{Theoretical5.eps}
@@ -264,7 +265,7 @@ The total solution was plotted together with vs and this is the result obtained:
 \label{fig:point5}
 \end{figure}
 
-It is worth noticing that v6t is not continuous.
+It is worth noticing that $v6t$ is not continuous and tends to diminish.
 
 \subsection{Point 6}
 The last assignment is to study how the amplitude ,in decibels, and the phase, in degrees, of v6, vs and vc= v6 - v8 vary with different frequencies. In order to achieve this objective, we plotted this fuctions together twice, in one of them we study the variance of the amplitude (Figure X) and in the other the variance of the phase (Figure Y). To obtain the intervals we used the logspace in the range of 0,1 Hz to 1 MHz.
