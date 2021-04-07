@@ -29,6 +29,20 @@ fclose (data);
  Kd = val(11)*10^(3)
  
  %----2. Theoretical Analysis----
+ %--Data table--
+ printf("Data_NTAB \n");                             %nodal table
+ printf("$R_{1}$ = %e \n", R1);
+ printf("$R_{2}$ = %e \n", R2);
+ printf("$R_{3}$ = %e \n", R3);
+ printf("$R_{4}$ = %e \n", R4);
+ printf("$R_{5}$ = %e \n", R5);
+ printf("$R_{6}$ = %e \n", R6);
+ printf("$R_{7}$ = %e \n", R7);
+ printf("$V_{s}$ = %e \n", Vs);
+ printf("$C$ = %e \n", C);
+ printf("$K_{b}$ = %e \n", Kb);
+ printf("$K_{d}$ = %e \n", Kd);
+ printf("Data_NEND \n \n");
  %--Ngspice--
  ng1=fopen("../sim/ng1.cir", "w");
  fprintf(ng1, ".OP\n");
@@ -73,14 +87,14 @@ fclose (data);
  printf("Nodal_NEND \n \n");
 
  printf("It is now possible to determine:\n");
- i1=(Vn(2)-Vn(1))*G1;                                %branch currents
+ i1=(Vn(1)-Vn(2))*G1;                                %branch currents
  i2=(Vn(3)-Vn(2))*G2;
  i3=(Vn(2)-Vn(4))*G3;
  i4=(Vn(4)-0)*G4;
  i5=(Vn(4)-Vn(5))*G5;
  i6=(0-Vn(6))*G6;
  i7=(Vn(6)-Vn(7))*G7;
- is=i1;
+ is=-i1;
  ib=Kb*(Vn(2)-Vn(4));
  ivd=-i7;
  ic=0;
