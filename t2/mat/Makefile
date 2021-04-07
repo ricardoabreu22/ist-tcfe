@@ -10,6 +10,7 @@ all: octave.log
 	$(eval OCTVTABSN42=$(shell grep _TAB42 $< | sed 's/_TAB42//g' | sed ':a;N;$!ba;s/\n/ /g'))
 	
 	
+	
 	$(foreach i, $(OCTVTABSN), sed -n '/^$i_NTAB/,/^$i_NEND/{p;/^$i_NEND/q}' $< | grep -v $i_NTAB | grep -v $i_NEND | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $i_tab.tex;)
 	$(foreach i, $(OCTVTABSNN), sed -n '/^$i_MNTAB/,/^$i_MNEND/{p;/^$i_MNEND/q}' $< | grep -v $i_MNTAB | grep -v $i_MNEND | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $i_tab.tex;)
 	$(foreach i, $(OCTVTABSN21), sed -n '/^$i_NTAB21/,/^$i_NEND21/{p;/^$i_NEND21/q}' $< | grep -v $i_NTAB21 | grep -v $i_NEND21 | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $i_tab.tex;)
