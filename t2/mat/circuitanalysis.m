@@ -87,7 +87,7 @@ fclose (data);
  printf("Nodal_NEND \n \n");
 
  printf("It is now possible to determine:\n");
- i1=(Vn(2)-Vn(1))*G1;                                %branch currents
+ i1=(Vn(1)-Vn(2))*G1;                                %branch currents
  i2=(Vn(3)-Vn(2))*G2;
  i3=(Vn(2)-Vn(4))*G3;
  i4=(Vn(4)-0)*G4;
