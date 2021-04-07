@@ -1,0 +1,42 @@
+*
+* NGSPICE simulation script
+*
+
+* forces current values to be saved
+.options savecurrents
+
+.include ng2.cir
+* input voltage source
+* vs v1 GND 0 ; we leave this voltage source to indicate that it is = to 0
+* R1 v2 v1 1.00147062639k
+* R2 v3 v2 2.0078068512k
+* R3 v2 v5 3.11269704405k
+* R4 v5 GND 4.10609573471k
+* R5 v6 v5 3.02670672634k
+* R6 GND v4 2.01292455078k
+* V6 v4 v7 0 ; we add this voltage source to sense the current through R6
+* R7 v8 v7 1.02905244808k
+* Vx v6 v8 6.385192 ; we obtained this voltage source value in t0_1)
+* Gb v6 v3 v2 v5 7.21413591579m
+* Hd v5 v8 V6 8.01455113996m
+
+*******************************************************************************
+
+.control
+
+
+op
+
+echo "********************************************"
+echo  "Operating point"
+echo "********************************************"
+
+
+echo  "op_TAB2"
+print all
+echo  "op_END2"
+
+
+.endc
+
+.end

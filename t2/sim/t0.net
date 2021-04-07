@@ -1,0 +1,33 @@
+*
+* NGSPICE simulation script
+*
+
+* forces current values to be saved
+.options savecurrents
+
+
+*for t<0, we just need to perform op analysis with vs = Vs
+
+
+* input voltage source
+.include ng1.cir
+
+*******************************************************************************
+
+.control
+
+op
+
+echo "********************************************"
+echo  "Operating point"
+echo "********************************************"
+
+
+echo  "op_TAB"
+print all
+echo  "op_END"
+
+quit
+.endc
+
+.end
