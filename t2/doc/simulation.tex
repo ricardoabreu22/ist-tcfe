@@ -1,15 +1,15 @@
-\section{Simulation Analysis}
+\section{Simulation Analysis and Comparison with Theoretical Results}
 \label{sec:simulation}
 
 \subsection{Operating Point Analysis}
 
 	Table~\ref{tab1:op} shows the simulated operating point results for the circuit
-under analysis for t<0, which means that we will consider the voltage source $v_s$ as a 
+under analysis for t$<$0, which means that we will consider the voltage source $v_s$ as a 
 DC voltage source equal to $V_s$, given in the Python script. Notice that the values on the right
 were obtained by Octave, therefore they are the theoretical values, which we already mentioned previously 
 but, to facilitate the comparison between the simulation and theoretical values, we mentioned them again.
 
-\begin{table}[h]
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
@@ -48,7 +48,7 @@ and theoretical values.
 
 
 
-\begin{table}[h]
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
@@ -72,19 +72,17 @@ and theoretical values.
 \end{table}
 
 
-Furthermore, we can see that for t<0, $V_6$ will have a significant different voltage value than for t=0; however, the voltage in the capacitor $C$,
-which is given by $V_6$-$V_8$ remains the same, despite the different values for $V_6$ and $V_8$. Therefore, we witness a discontinuity in the node voltages,
-that does not happen for the voltage in the capacitor - well, this happens because only the voltages in capacitors and inductors remain continuous, therefore 
-the voltages in the resistors will have 'jumps' in their values to mantain the continuity previously mentioned. 
+Furthermore, we can see that for t$<$0, $V_6$ will have a significant different voltage value than for t=0; however, the voltage in the capacitor $C$, which is given by $V_6$-$V_8$ remains the same, despite the different values for $V_6$ and $V_8$. Therefore, we witness a discontinuity in the node voltages,
+that does not happen for the voltage in the capacitor - well, this happens because only the voltages in capacitors and inductors remain continuous, therefore the voltages in the resistors will have 'jumps' in their values to mantain the continuity previously mentioned. 
 
 
-In both tables, we can see an nineth node (node 8), which has the same voltage value as node 6. This happens because, in NGSPice, when we want to simulate circuits with current-dependent sources, we must add a 0V voltage source in series to a component to sense the current flowing through it. Therefore, an aditional node appears in the simulated circuit.
+In both tables, we can see a nineth node (node 4), which has the same voltage value as node 7. This happens because, in NGSPice, when we want to simulate circuits with current-dependent sources, we must add a 0V voltage source in series to a component to sense the current flowing through it. Therefore, an aditional node appears in the simulated circuit.
 
 
 \subsection{Transient Analysis}
 
 
-Figure~\ref{fig:trans} shows the simulated transient analysis results for the natural response of 
+Figure~\ref{fig:trans1} shows the simulated transient analysis results for the natural response of 
 the circuit under analysis, using the boundary conditions for $V_6$ and $V_8$ obtained previously
 in the second operating point analysis performed. 
 
@@ -101,7 +99,7 @@ for the interval [-5; 20]ms, we can easily notice the discontinuity for the volt
 $v_s$ and $V_6$, that does not happen for the voltage in the capacitor.
 
 
-Figure~\ref{fig:trans} shows the simulated transient analysis results for the
+Figure~\ref{fig:trans2} shows the simulated transient analysis results for the
 circuit under analysis, where we finally consider the voltage source $v_s$,
 as a sinusoidal fuction of time. We perform this simulation to obtain the total
 solution (natural+forced).
@@ -125,9 +123,9 @@ match the one obtained by NGSpice.
 
 \subsubsection{Magnitude Response}
 
-Figure~\ref{fig:acm} shows the magnitude of the frequency response for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
+Figure~\ref{fig:acm} shows the magnitude, in decibel, of the frequency response for $v_6$, $v_s$ and the voltage in the capacitor $C$ 
+of the circuit under analysis. Compared to the theoretical analysis results, we notice that we obtain the same results, 
+since the graphic curves for the theoretical and simulation analysis are similar.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.4\linewidth]{acm.pdf}
@@ -139,9 +137,9 @@ notices the following differences: describe and explain the differences.
 
 \subsubsection{Phase Response}
 
-Figure~\ref{fig:acp} shows the magnitude of the frequency response for the
-circuit under analysis. Compared to the theoretical analysis results, one
-notices the following differences: describe and explain the differences.
+Figure~\ref{fig:acp} shows the phase, in degrees, of the frequency response for $v_6$, $v_s$ and the voltage in the capacitor $C$ 
+of the circuit under analysis. Compared to the theoretical analysis results, we notice that, again, we obtain the same results, 
+since the graphic curves for the theoretical and simulation analysis are similar.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.4\linewidth]{acp.pdf}
