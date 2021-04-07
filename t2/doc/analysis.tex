@@ -232,16 +232,16 @@ The phasor amplitude values and phases were also computed in this task and can b
   \label{tab:amp}
 \end{table}
 
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [rad]} \\ \hline
-    \input{../mat/Val42_tab}
-  \end{tabular}
-  \caption{Phase}
-  \label{tab:phases}
-\end{table}
+%\begin{table}[H]
+%  \centering
+%  \begin{tabular}{|l|r|}
+%    \hline    
+%    {\bf Name} & {\bf Value [rad]} \\ \hline
+%    \input{../mat/Val42_tab}
+%  \end{tabular}
+%  \caption{Phase}
+%  \label{tab:phases}
+%\end{table}
 
 \subsection{Final Total Solution}
 The total solution for the node 6 for a frequency,f = 1000 Hz was calculated by superimposing
@@ -267,12 +267,13 @@ The total solution was plotted together with $v_s$ and this is the result obtain
 
 It is worth noticing that $v6t$ is not continuous and tends to diminish.
 
-\subsection{Point 6}
+\subsection{Frequency Responses}
 The last assignment is to study how the amplitude ,in decibels, and the phase, in degrees, of v6, vs and vc= v6 - v8 vary with different frequencies. In order to achieve this objective, we plotted this fuctions together twice, in one of them we study the variance of the amplitude (Figure X) and in the other the variance of the phase (Figure Y). To obtain the intervals we used the logspace in the range of 0,1 Hz to 1 MHz.
+
 \par Plot studying the amplitude variance:
 \begin{figure}[H] \centering
 \includegraphics[width=0.6\linewidth]{freq6SC.eps}
-\caption{Final response.}
+\caption{Magnitude response.}
 \label{fig:point61}
 \end{figure}
 Since the transfer function is calculated via a quocient of the output and the input, the result expected and obtained for vs is zero.
@@ -281,10 +282,10 @@ Regarding v6, it is noticeable that for higher frequencies that the functions is
 acts as a shunt, meaning that only the resistors (that do not vary with the frequency) influence the variance, making it constant. For lower frequencies, it is observable that
 there is a slightly decrease. This is expected in a RC circuit and it is due to the impedance of the capacitor.
 
-Plot studying the phase variance:\par
+Plot studying the phase variance:
 \begin{figure}[H] \centering
 \includegraphics[width=0.6\linewidth]{ph6SC.eps}
-\caption{Final response.}
+\caption{Phase response.}
 \label{fig:point62}
 \end{figure}
 It is worth noticing that, as expected , the phase variance of vs is null. This is also due to the fact that the transfer function is calculated using a quocient between the output and the input.
