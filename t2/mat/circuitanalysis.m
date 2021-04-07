@@ -133,10 +133,31 @@ Ix=-(f(4)-f(5))/R5 - Kb*(f(2)-f(4))
 
 printf("Ix = %f\n", Ix*1000);
 
+ i12=(f(1)-f(2))*G1;                                %branch currents
+ i22=(f(3)-f(2))*G2;
+ i32=(f(2)-f(4))*G3;
+ i42=(f(4)-0)*G4;
+ i52=(f(4)-f(5))*G5;
+ i62=(0-f(6))*G6;
+ i72=(f(6)-f(7))*G7;
+ is2=-i12;
+ ib2=Kb*(f(2)-f(4));
+ ivd2=-i72;
+
 Req=Vx/Ix
 T=Req*C
 
- printf("Val21_NTAB21 \n");                             %table 1
+ printf("Val21_NTAB21 \n");                          %table 1
+ printf("$I_{R1}$ = %e \n", i12);
+ printf("$I_{R2}$ = %e \n", i22);
+ printf("$I_{R3}$ = %e \n", i32);
+ printf("$I_{R4}$ = %e \n", i42);
+ printf("$I_{R5}$ = %e \n", i52);
+ printf("$I_{R6}$ = %e \n", i62);
+ printf("$I_{R7}$ = %e \n", i72);
+ printf("$I_{s}$ = %e \n", is2);
+ printf("$I_{b}$ = %e \n", ib2);
+ printf("$I_{Vd}$ = %e \n", ivd2);
  printf("$V_{1}$ = %e \n", f(1));                   
  printf("$V_{2}$ = %e \n", f(2));
  printf("$V_{3}$ = %e \n", f(3));
@@ -149,6 +170,7 @@ T=Req*C
  printf("$V_{x}$ = %e \n", Vx);
  printf("$I_{x}$ = %e \n", Ix);
  printf("$R_{eq}$ = %e \n", Req);
+ printf(" tau = %e\n", T);
  printf("Val22_NEND22 \n \n");   
 %--Ngspice--
  ng2=fopen("../sim/ng2.cir", "w");
