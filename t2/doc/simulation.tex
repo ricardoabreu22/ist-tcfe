@@ -1,0 +1,151 @@
+\section{Simulation Analysis}
+\label{sec:simulation}
+
+\subsection{Operating Point Analysis}
+
+	Table~\ref{tab1:op} shows the simulated operating point results for the circuit
+under analysis for t<0, which means that we will consider the voltage source $v_s$ as a 
+DC voltage source equal to $V_s$, given in the Python script. Notice that the values on the right
+were obtained by Octave, therefore they are the theoretical values, which we already mentioned previously 
+but, to facilitate the comparison between the simulation and theoretical values, we mentioned them again.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/op_tab}
+  \end{tabular}
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Node} & {\bf Voltage[V]} \\ \hline
+    \input{../mat/Nodal_tab}
+  \end{tabular}
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/ValN_tab}
+  \end{tabular}
+  \caption {Operating point for t<0. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt. The values on the right are the theoretical values for the currents and voltages in the circuit.}
+  \label{tab1:op}
+\end{table}
+
+
+	Compared to the theoretical analysis results, we notice that both simulation results are accurate, except for the last 
+decimal places, as a consequence of the cientific notation and the number of significative algharisms used by each program to 
+present the results. Despite that, we realise that the values with more significant algharisms match correctly the rounded values.
+
+
+	Table~\ref{tab2:op} shows the simulated operating point results for the circuit
+under analysis for t=0, where we will consider the voltage source $v_s$=0 and replace the
+capacitor for a voltage source $V_x$=$V_6$-$V_8$, where $V_6$ and $V_8$ are the voltages in
+nodes 6 and 8, respectively. This step will allow us to verify the theoretical results obtained 
+for the node voltages and the current $I_x$, which are accurate, as we can see. Again, we show
+the theoretical values obtained for this step, to make it easier to compare between simulation
+and theoretical values.
+
+
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/op_tab2}
+  \end{tabular}
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/Val21_tab}
+  \end{tabular}
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/Val22_tab}
+  \end{tabular}
+  \caption{Operating point for t=0, where the capacitor $C$ was replaced by a voltage source $V_x$=$V_6$-$V_8$, with $V_6$ and $V_8$ obtained previously. 
+  A variable preceded by @ is of type {\em current} and expressed in Ampere; other variables are of type {\it voltage} and expressed in Volt. The values on the right are the theoretical 
+  values for the currents and voltages in the circuit.}
+  \label{tab2:op}
+\end{table}
+
+
+Furthermore, we can see that for t<0, $V_6$ will have a significant different voltage value than for t=0; however, the voltage in the capacitor $C$,
+which is given by $V_6$-$V_8$ remains the same, despite the different values for $V_6$ and $V_8$. Therefore, we witness a discontinuity in the node voltages,
+that does not happen for the voltage in the capacitor - well, this happens because only the voltages in capacitors and inductors remain continuous, therefore 
+the voltages in the resistors will have 'jumps' in their values to mantain the continuity previously mentioned. 
+
+
+In both tables, we can see an nineth node (node 8), which has the same voltage value as node 6. This happens because, in NGSPice, when we want to simulate circuits with current-dependent sources, we must add a 0V voltage source in series to a component to sense the current flowing through it. Therefore, an aditional node appears in the simulated circuit.
+
+
+\subsection{Transient Analysis}
+
+
+Figure~\ref{fig:trans} shows the simulated transient analysis results for the natural response of 
+the circuit under analysis, using the boundary conditions for $V_6$ and $V_8$ obtained previously
+in the second operating point analysis performed. 
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{trans1.pdf}
+\caption{Transient output voltage for node 6, with boundary conditions $V_6$ and $V_8$ obtained previously.}
+\label{fig:trans1}
+\end{figure}
+
+We can notice that the graphic for the voltage $V_6$ is in a form of a negative exponential, 
+which is confirmed by the expression and respective graphic obtained for the theoretical 
+analysis, performed in Octave. Furthermore, because the theoretical analysis is performed
+for the interval [-5; 20]ms, we can easily notice the discontinuity for the voltage values
+$v_s$ and $V_6$, that does not happen for the voltage in the capacitor.
+
+
+Figure~\ref{fig:trans} shows the simulated transient analysis results for the
+circuit under analysis, where we finally consider the voltage source $v_s$,
+as a sinusoidal fuction of time. We perform this simulation to obtain the total
+solution (natural+forced).
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{trans2.pdf}
+\caption{Transient output voltage for node 6, voltage source $V_s$ and capacitor $C$}
+\label{fig:trans2}
+\end{figure}
+
+By analysing the result of the simulation, we notice that the total solution resulted 
+of an overlap between the natural solution (in the form of a negative exponential) and
+the forced solution (in a form of a sinusoidal function). Comparing to the theoretical
+analysis, we notice again, because of the time interval used, the discontinuity of the 
+values in t=0, that does not happen for the voltage in the capacitor. As far as the result
+is concerned, the form of the theoretical solution (negative exponential+sinusoidal fuction)
+match the one obtained by NGSpice.
+
+
+\subsection{Frequency Analysis}
+
+\subsubsection{Magnitude Response}
+
+Figure~\ref{fig:acm} shows the magnitude of the frequency response for the
+circuit under analysis. Compared to the theoretical analysis results, one
+notices the following differences: describe and explain the differences.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{acm.pdf}
+\caption{Magnitude response for node 6, voltage source $V_s$ and capacitor $C$}
+\label{fig:acm}
+\end{figure}
+
+
+
+\subsubsection{Phase Response}
+
+Figure~\ref{fig:acp} shows the magnitude of the frequency response for the
+circuit under analysis. Compared to the theoretical analysis results, one
+notices the following differences: describe and explain the differences.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{acp.pdf}
+\caption{Phase response for node 6, voltage source $V_s$ and capacitor $C$}
+\label{fig:acp}
+\end{figure}
+

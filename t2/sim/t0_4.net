@@ -1,0 +1,66 @@
+*
+* NGSPICE simulation script
+*
+
+* forces current values to be saved
+.options savecurrents
+
+
+
+* input voltage source
+.include ng4.cir
+*vs v1 GND 0 ac 1 sin(0 1 1k)
+*R1 v2 v1 1.00147062639k
+*R2 v3 v2 2.0078068512k
+*R3 v2 v5 3.11269704405k
+*R4 v5 GND 4.10609573471k
+*R5 v6 v5 3.02670672634k
+*R6 GND v4 2.01292455078k
+*V6 v4 v7 0 ; we add this voltage source to sense the current through R6
+*R7 v8 v7 1.02905244808k
+*C v6 v8 1.04086013403u
+*Gb v6 v3 v2 v5 7.21413591579m
+*Hc v5 v8 V6 8.01455113996k
+
+*******************************************************************************
+
+
+*.ic v(v6)=8.843308 v(v8)=0
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 2e-5 20e-3 uic
+
+hardcopy trans2.ps v1 v6 v6-v8
+echo trans2_FIG
+
+echo "********************************************"
+echo  "Frequency analysis"
+echo "********************************************"
+
+ac dec 100 0.1 1MEG
+
+hardcopy acm.ps db(v6) db(v1) db(v6-v8) xlabel 'Frequency' ylabel 'Magnitude'
+echo acm_FIG
+
+hardcopy acp.ps ph(v6)*180/pi ph(v1)*180/pi ph(v6-v8)*180/pi xlabel 'Frequency' ylabel 'Degrees'
+echo acp_FIG
+
+
+.endc
+.op
+.end
