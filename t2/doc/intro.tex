@@ -8,24 +8,17 @@ by 4 elementary meshes and 8 nodes, as seen in Figure~\ref{fig:circuit}.
 
 In order to analyse the circuit, the following data were obtained by running the supplied Python script: 
 
-\textit{Units for the values:} V, mA, uF, kOhm and mS\par
+\textit{Units for the values:} V, A, F, Ohm and S\par
 \textit{Values:}
-
-
- 
-
-R1 = 1.00147062639\par
-R2 = 2.0078068512\par
-R3 = 3.11269704405\par
-R4 = 4.10609573471\par
-R5 = 3.02670672634\par
-R6 = 2.01292455078\par
-R7 = 1.02905244808\par
-Vs = 5.24842063411\par
-C = 1.04086013403\par
-Kb = 7.21413591579\par
-Kd = 8.01455113996
-
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    \input{../mat/Data_tab}
+  \end{tabular}
+  \caption{Data Table}
+  \label{tab:datatab}
+\end{table}
 
 In Section~\ref{sec:analysis}, a theoretical analysis of the circuit, 
 performed on Octave, is presented. In Section~\ref{sec:simulation}, the 

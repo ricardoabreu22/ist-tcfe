@@ -29,6 +29,20 @@ fclose (data);
  Kd = val(11)*10^(3)
  
  %----2. Theoretical Analysis----
+ %--Data table--
+ printf("Data_NTAB \n");                             %nodal table
+ printf("$R_{1}$ = %e \n", R1);
+ printf("$R_{2}$ = %e \n", R2);
+ printf("$R_{3}$ = %e \n", R3);
+ printf("$R_{4}$ = %e \n", R4);
+ printf("$R_{5}$ = %e \n", R5);
+ printf("$R_{6}$ = %e \n", R6);
+ printf("$R_{7}$ = %e \n", R7);
+ printf("$V_{s}$ = %e \n", Vs);
+ printf("$C$ = %e \n", C);
+ printf("$K_{b}$ = %e \n", Kb);
+ printf("$K_{d}$ = %e \n", Kd);
+ printf("Data_NEND \n \n");
  %--Ngspice--
  ng1=fopen("../sim/ng1.cir", "w");
  fprintf(ng1, ".OP\n");
