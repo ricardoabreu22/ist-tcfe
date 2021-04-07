@@ -285,6 +285,7 @@ endfor
   printf("$V_{7}$ = %e \n", polar(6,2));
   printf("$V_{8}$ = %e \n", polar(7,2));
   printf("Val42_END42 \n \n");
+  
  temp=0:1e-6:20e-3;
  V6f=polar(5,1)*cos(w*temp-polar(5,2));
  
