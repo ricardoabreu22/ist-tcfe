@@ -200,6 +200,7 @@ y = figure(1);
 plot(t*1e3, V6n, "r");
 xlabel("t [ms]");
 ylabel("V6n [V]");
+legend("vn6","location","northeast");
 grid on;
 print(y, "theoretical.eps", "-depsc");
 close(y);

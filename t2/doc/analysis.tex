@@ -91,7 +91,7 @@ Note that:
     {\bf Name} & {\bf Current[A]} \\ \hline
     \input{../mat/ValN_tab}
   \end{tabular}
-  \caption{Voltages and currents of circuit components}
+  \caption{Currents of circuit components}
   \label{tab:valn}
 \end{table}
 
@@ -150,7 +150,7 @@ And the results obtained are expressed in this table:
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../mat/Val21_tab}
   \end{tabular}
-  \caption{Voltages and currents of some circuit components}
+  \caption{Voltages and currents of circuit components}
   \label{tab:val21}
 \end{table}
 
@@ -158,16 +158,16 @@ And the results obtained are expressed in this table:
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../mat/Val22_tab}
   \end{tabular}
-  \caption{Voltages and currents of some circuit components}
+  \caption{Calculated Values}
   \label{tab:val22}
 \end{table}
 
-\subsection{Point 3}
+\subsection{Natural Solution, $t \geqslant $ 0}
 
-This tasks' objective is to compute the natural solution of the voltage in node 6. Using the results previously obtained in task 2, we  obtained the value of the voltage in this node when t= 0 seconds [$v_6n$(t=0s)=$V_x$ , since the result obtain for v8 is zero in the previous task].
+This tasks' objective is to compute the natural solution of the voltage in node 6. Using the results previously obtained in task 2, we  obtained the value of the voltage in this node when t= 0 seconds and $v_{6n}$(t=0s)=$V_x$ , since the result obtain for v8 is zero in the previous task.
+
 \par The natural solution as the following format:
 \begin{equation}
 v_n(t) = A \cdot \exp(\frac{-t}{RC})
@@ -179,11 +179,10 @@ In this particular case, A= $v_6$(t=0) =$V_x$, giving us the equation below:
 v_6n(t) = V_x \cdot \exp(\frac{-t}{RC})
 \end{equation}
 
-The following plot was obtained using the octave tool and it shows the graph obtained for the natural solution of the voltage in node 6 and it is
-as expected a negative exponetial:
+The following plot was obtained using the octave tool and it shows the graph obtained for the natural solution of the voltage in node 6 and it is as expected a negative exponetial:
 \begin{figure}[H] \centering
 \includegraphics[width=0.6\linewidth]{theoretical.eps}
-\caption{Final response.}
+\caption{Natural response.}
 \label{fig:point3}
 \end{figure}
 
