@@ -16,7 +16,7 @@ Thereafter, the current of a capacitor is not proportional to the voltage in its
 \subsection{Voltages in Nodes and Currents in Branches}
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.4\linewidth]{nvoltages.pdf}
+\includegraphics[width=0.4\linewidth]{mcurrents.pdf}
 \caption{Circuit with each current direction arbitrarily assigned, to assist in the analysis of the circuit by the Nodal Method.}
 \label{fig:nvoltages}
 \end{figure}
@@ -46,7 +46,7 @@ After doing that we can now obtain the matricial equation wich will allow us to 
 
 \begin{gather}
 	\begin{bmatrix}
-		1 & -0 & 0 & 0 & 0 & 0 & 0 + 0 \\
+		1 & -0 & 0 & 0 & 0 & 0 & 0 \\
 		G_1 & -G_1 - G_2 - G_3 & G_2 & G_3 & 0 & 0 & 0 \\
 		0 & G_2 + K_b & -G_2 & -K_b & 0 & 0 & 0 \\
 		0 & -G_3 & 0 & G_3+G_4+G_5 & -G_5 & -G_7 & G_7 \\
@@ -94,4 +94,172 @@ Note that:
   \label{tab:valn}
 \end{table}
 
+\subsection{Equivalent Resistance}
+The objective of this task is to calculate Req and $I_x$ as seen in terminals of the voltage source substituting the capacitator. It is known that:
+\begin{equation}
+   R_eq= \frac{V_x}{I_x}
+\end{equation}
+In order to solve this task, we used the concept of the Thévenin and Norton Theorems.\par
+The matrix equation used in the octave tool is the following:
 
+\begin{gather}
+	\begin{bmatrix}
+		1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		G_1 & -G_1 - G_2 - G_3 & G_2 & G_3 & 0 & 0 & 0 \\
+		0 & G_2 + K_b & -G_2 & -K_b & 0 & 0 & 0 \\
+		-G_1 & G_1 & 0 & G_4 & 0 & G_6 & 0 \\
+		0 & 0 & 0 & 1 & 0 & G_6\cdot K_d & -1 \\
+		0 & 0 & 0 & 0 & 1 & 0 & -1 \\
+		0 & 0 & 0 & 0 & 0 & -G_6-G_7 & G_7 \\
+	\end{bmatrix}
+	\begin {bmatrix} V_1 \\ V_2 \\ V_3 \\ V_5  \\ V_6 \\ V_7 \\ V_8 \end{bmatrix}
+	=
+	\begin {bmatrix} 0  \\ 0  \\ 0  \\ 0 \\ 0  \\ V_x \\ 0 \end{bmatrix}
+\end{gather}
+And the results obtained are expressed in this table:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/Val21_tab}
+  \end{tabular}
+  \caption{Voltages and currents of some circuit components}
+  \label{tab:val21}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/Val22_tab}
+  \end{tabular}
+  \caption{Voltages and currents of some circuit components}
+  \label{tab:val22}
+\end{table}
+
+\subsection{Point 3}
+
+This tasks' objective is to compute the natural solution of the voltage in node 6. Using the results previously obtained in task 2, we  obtained the value of the voltage in this node when t= 0 seconds [$v_6n$(t=0s)=$V_x$ , since the result obtain for v8 is zero in the previous task].
+\par The natural solution as the following format:
+\begin{equation}
+v_n(t) = A \cdot \exp(\frac{-t}{RC})
+\end{equation}
+
+In this particular case, A= $v_6$(t=0) =$V_x$, giving us the equation below:
+
+\begin{equation}
+v_6n(t) = V_x \cdot \exp(\frac{-t}{RC})
+\end{equation}
+
+The following plot was obtained using the octave tool and it shows the graph obtained for the natural solution of the voltage in node 6 and it is
+as expected a negative exponetial:
+\begin{figure}[H] \centering
+\includegraphics[width=0.6\linewidth]{theoretical.eps}
+\caption{Final response.}
+\label{fig:point3}
+\end{figure}
+
+\subsection{Point 4}
+In order to compute the forced solution for the voltage in node 6,it was utilized the same time interval considered in the previous task.
+\par But to calculate the forced solution, we need to used the regular circuit and to do that we assumed a phasor Vs and substituited the capacitor C for its impedance, Zc.
+\par The phasor used was:
+\begin{equation}
+V_s = \exp(-i\cdot \frac{pi}{2})
+\end{equation}
+And the formula to obtain Zc is:
+\begin{equation}
+Z_c= \frac{1}{i\cdot C \cdot \omega}
+\end{equation}
+With all of that taken into consideration, the matrix equation used to calculate the forced solution in this time interval is the following:
+\begin{gather}
+	\begin{bmatrix}
+		1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		-G_1 & G_1 & 0 & G_4 & 0 & G_6 & 0 \\
+		G_1 & -G_1 & -G_2 & -K_b & 0 & 0 & 0 \\
+		0 & G_2+Kb & -G_2 & -K_b & 0 & 0 & 0;\\
+               0 & -Kb & 0 & Kb+G_5 & -G_5-\frac{1}{Z_c} & 0 & \frac{1}{Z_c} \\
+               0 & 0 & 0 & 0 & 0 & -G_6-G_7 & G_7\\
+               0 & 0 & 0 & 1 & 0 & G_6\cdot K_d &-1\\
+	\end{bmatrix}
+	\begin {bmatrix} V_1 \\ V_2 \\ V_3 \\ V_5  \\ V_6 \\ V_7 \\ V_8 \end{bmatrix}
+	=
+	\begin {bmatrix} 0  \\ 0  \\ 0  \\ 0 \\ 0  \\ V_x \\ 0 \end{bmatrix}
+\end{gather}
+The result obtained can be seen in the plot below:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.6\linewidth]{Forced4.eps}
+\caption{Final response.}
+\label{fig:point4}
+\end{figure}
+
+The phasor amplitude values and phases were also computed in this task and can be consulted in the Table (X):
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/Val41_tab}
+  \end{tabular}
+  \caption{Amp}
+  \label{tab:amp}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/Val42_tab}
+  \end{tabular}
+  \caption{Voltages and currents of some circuit components}
+  \label{tab:phases}
+\end{table}
+
+\subsection{Point 5}
+The total solution for the node 6 for a frequency,f = 1000 Hz was calculated by superimposing
+the forced and the natural solution for t maior ou igual 0. For t menor0 , the voltage in node 6 is the
+one calculated in the first task. This gives us the following function for v6:
+
+%\begin{equation}
+%v_6t
+%\begin {cases}
+%V_6 & $t$ <0 \\
+%v_6n + v_6A * cos(\omega *t - v_6Ph)
+%\end{cases}
+%\end{equation}
+
+The total solution was plotted together with vs and this is the result obtained:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.6\linewidth]{Theoretical5.eps}
+\caption{Final response.}
+\label{fig:point5}
+\end{figure}
+
+It is worth noticing that v6t is not continuous.
+
+\subsection{Point 6}
+The last assignment is to study how the amplitude ,in decibels, and the phase, in degrees, of v6, vs and vc= v6 - v8 vary with different frequencies. In order to achieve this objective, we plotted this fuctions together twice, in one of them we study the variance of the amplitude (Figure X) and in the other the variance of the phase (Figure Y). To obtain the intervals we used the logspace in the range of 0,1 Hz to 1 MHz.
+\par Plot studying the amplitude variance:
+\begin{figure}[H] \centering
+\includegraphics[width=0.6\linewidth]{freq6SC.eps}
+\caption{Final response.}
+\label{fig:point61}
+\end{figure}
+Since the transfer function is calculated via a quocient of the output and the input, the result expected and obtained for vs is zero.
+It is also noticeable that vc rapidly decreases as the frenquency shoots upwards.\par
+Regarding v6, it is noticeable that for higher frequencies that the functions is constant, this is due to the fact that for this kind of frequencies the capacitator
+acts as a shunt, meaning that only the resistors (that do not vary with the frequency) influence the variance, making it constant. For lower frequencies, it is observable that
+there is a slightly decrease. This is expected in a RC circuit and it is due to the impedance of the capacitor.
+
+Plot studying the phase variance:\par
+\begin{figure}[H] \centering
+\includegraphics[width=0.6\linewidth]{ph6SC.eps}
+\caption{Final response.}
+\label{fig:point62}
+\end{figure}
+It is worth noticing that, as expected , the phase variance of vs is null. This is also due to the fact that the transfer function is calculated using a quocient between the output and the input.
+For v6 and vc, it is observable that with the frequency increment the phase achieve lower values and are all negative, as expected. 

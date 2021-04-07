@@ -6,19 +6,11 @@
 .options savecurrents
 
 
+*for t<0, we just need to perform op analysis with vs = Vs
+
+
 * input voltage source
-Va v1 v7 5.24842063411
-R1 v2 v1 1.00147062639k
-R2 v3 v2 2.0078068512k
-R3 v2 GND 3.11269704405k
-R4 GND v7 4.10609573471k
-R5 v4 GND 3.02670672634k
-R6 v7 v8 2.01292455078k
-V6 v8 v6 0 ; we add this voltage source to sense the current through R6
-R7 v6 v5 1.02905244808k
-Id v5 v4 1.04086013403m
-Gb v4 v3 v2 GND 7.21413591579m
-Hc GND v5 V6 8.01455113996m
+.include ng1.cir
 
 *******************************************************************************
 
