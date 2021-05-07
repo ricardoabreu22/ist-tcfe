@@ -1,0 +1,30 @@
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
+theoretically. We will begin by analyzing the Envelope Detector circuit and, after that, the Voltage regulator circuit, in order to predict their outputs.
+
+The theoretical values will be obtained by applying Kirchhoff laws and the diode equations.
+Considering the circuiy of Figure~\ref{fig:circuit}, is composed by a Voltage source, a transformer, an envelope detector and a voltage regulator.
+
+The amplitude and the frequency of the voltage source are equal to 230V and 50Hz, respectively. However, the transformer will convert this into a lower voltage, supllying the rest of the circuit with a voltage, Vs(t):
+\begin{equation}
+  V_s(t)= A \cdot cos(wt)
+  \label{eq:Vs(t)}
+\end{equation}
+, where
+\begin{equation}
+  w= 2 \cdot \pi \cdot f
+  \label{eq:Vs(t)}
+\end{equation}
+
+\subsection{Envelope Detector}
+The envelope detector consists of a rectifier, composed by four diodes, a resistor, R1, and a capacitor, C.
+
+The rectifier used on this AC/DC converter was a full-wave rectifier, more specifically, a bridge rectifier. Theoretically, this rectifier produce an output of $V_(rectifier)=|V_s(t)|$.
+
+The resistor and the capacitor are used to smooth the wave.
+
+
+
+\subsection{Voltage Detector}

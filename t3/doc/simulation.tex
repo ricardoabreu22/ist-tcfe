@@ -1,0 +1,30 @@
+\section{Simulation Analysis}
+\label{sec:simulation}
+
+\subsection{Operating Point Analysis}
+
+	Table~\ref{tab:op} shows the simulated operating point results for the circuit
+under analysis. Compared to the theoretical analysis results, we notice that the
+simulation results are accurate, except for the last decimal places, 
+as a consequence of the cientific notation and the number of significative algharisms 
+used by each program to present the results. Despite that, we realise that the 
+values with more significant algharisms (used in NGSpice) match correctly the 
+rounded values (used in Octave).
+
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../sim/op_tab}
+  \end{tabular}
+  \caption{Operating point. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:op}
+\end{table}
+
+In the table, we can see an nineth node (node 8), which has the same voltage value as node 6. This happens because, in NGSPice, when we want to simulate circuits with current-dependent sources, we must add a 0V voltage source in series to a component to sense the current flowing through it. Therefore, an aditional node appears in the simulated circuit.
+
+Note that we can not perform aditional simulation analysis, namely transient and frequency ones, with phase and magnitude responses and input impedance, because the circuit does not have any electrical component which output is a function of time.
