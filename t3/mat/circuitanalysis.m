@@ -16,9 +16,9 @@ T=1/f;
 Vin = 230;
 
 %--------------------Secondary Circuit (chosen data)----------------------------
-R1 = 3000;
-R2 = 5000;
-C = 0.0001;
+R1 = 60000;
+R2 = 63000;
+C = 0.150;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%TABELA COM VALORES POR NO REPORT E LIDA NO NGSPICE--------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ printf ("Average Envelope = %e \n", average_env);
 printf ("Envelope_END\n\n");
 
 %-----------------------Voltage Regulator---------------------------------------
-num_diode = 17;
+num_diode = 20;
 VOn = 0.6;
 
 vOreg = zeros(1, length(t));
@@ -84,16 +84,16 @@ endif
 	
   
 %ac component regulator
-vt = 0.026;
+vt = 0.025;
 Is = 1e-14;
 eta = 1;
 
 rd = eta*vt/(Is*exp(VOn/(eta*vt)));
 
-ac_vOreg = (num_diode*rd)/((num_diode*rd)+R2)*(venv-average_env);
+ac_vOreg = ((num_diode*rd)/(num_diode*rd +R2))*(venv-average_env);
 
 vOreg = dc_vOreg+ac_vOreg;
-	
+
 %plots of the values
 	
 %output voltages at rectifier, envelope detector and regulator
@@ -119,7 +119,7 @@ print (fig1, "vout_reg_env.eps", "-depsc");
 %Deviations (vOenv - 12) 
 fig2 = figure(2);
 title("Defletion from the wanted DC voltage")
-plot (t*1000,(venv-12), ";vo-12 (t);");
+plot (t*1000,venv-12, ";vo-12 (t);",t*1000,vOreg-12,"color","r",";vOreg-12 (t);");
 xlabel ("t[ms]")
 ylabel ("v_O [Volts]")
 legend('Location','northeast');

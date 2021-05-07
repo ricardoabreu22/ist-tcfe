@@ -26,5 +26,20 @@ The rectifier used on this AC/DC converter was a full-wave rectifier, more speci
 The resistor and the capacitor are used to smooth the wave.
 
 
-
 \subsection{Voltage Detector}
+
+\subsection{Voltage Regulator Circuit}
+The voltage regulator circuit takes advantage of the fact the diodes are non-linear components to attenuate the oscilations in the input signal without frequency dependence. In out case the voltage regulator is composed by X diodes connect in series and one resistance with the value of R2.\\
+
+The DC voltage in the regulator is the minimum between the average envelope and the voltage in each diode terminals times the number of diodes connected in series.
+Using the equation:
+\begin{equation}
+ r_d= \frac {\eta \cdot V_T}{ I_s \cdot \exp(\frac{V_d}{\eta \cdot V_t}}
+  \label{eq: rd}
+\end{equation}
+, to compute the resistance seen by each diode terminals and calculate the AC voltage seen in the regulator.
+This means that the output DC voltage will be the sum of the AC voltage previously mentioned and the DC voltage previously mentioned, giving us the following graphics:
+*INSERIR GRÁFICOS*
+Ideally, the output DC voltage will be a constant equal to 12 Volts. And by analysing the graph and comparing it to the simulation we can conclude that it was /was not achieved a acceptable result.
+
+
