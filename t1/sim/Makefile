@@ -1,10 +1,6 @@
 all: ngspice.log
 	$(eval NGSFIGS=$(shell grep _FIG $< | sed 's/_FIG//g' | sed ':a;N;$!ba;s/\n/ /g'))
 	$(eval NGSFIGPS=$(addsuffix .ps, $(NGSFIGS)))
-<<<<<<< HEAD:t1/sim/Makefile
-=======
-	$(foreach i, $(NGSFIGPS), ps2eps -B $i;)
->>>>>>> 9d849fbf7c05fa5c210f3c0780af05b4ca0a6051:t0/sim/Makefile
 	$(eval NGSTABS=$(shell grep _TAB $< | sed 's/_TAB//g' | sed ':a;N;$!ba;s/\n/ /g'))
 	$(foreach i, $(NGSTABS), sed -n '/^$i_TAB/,/^$i_END/{p;/^$i_END/q}' $< | grep -v $i_TAB | grep -v $i_END | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $i_tab.tex;)
 	$(foreach i, $(NGSFIGPS), ps2pdf $i;)
@@ -13,6 +9,6 @@ ngspice.log: ../sim/t0.net
 	ngspice -b $< -o $@
 
 clean:
-	@rm -f ngspice.log *.tex *.pdf *.ps *~ *.eps
+	@rm -f ngspice.log *.tex *.pdf *.ps *~
 
 .PHONY: all clean
