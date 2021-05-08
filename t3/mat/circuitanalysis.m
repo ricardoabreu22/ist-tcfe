@@ -149,11 +149,6 @@ printf ("Ripple_END\n\n");
 total_cost = ((R1+R2)/1000)+C*1000000+((ndiode+4)*0.1);
 merit=1/(total_cost*(ripple_reg)+abs(average_reg-12)+10e-6);
 
-printf ("Ripple_TAB\n");
-printf ("Ripple Voltage= %e \n", ripple_reg);
-printf ("Average Voltage Difference = %e \n", average_reg - 12);
-printf ("Ripple_END\n\n");
-
 printf ("Total cost of the components = %e \n", total_cost);
 printf ("Merit= %e \n", merit);
 
