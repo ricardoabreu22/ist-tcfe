@@ -71,40 +71,33 @@ average_env = ripple_env/2 + min(venv)
 
 printf ("Envelope_TAB\n");
 printf ("Ripple Envelope = %e \n", ripple_env);
-printf ("Envelope_END\n\n");
-
-%-----------------------Voltage Regulator---------------------------------------
-
-printf ("Envelope_TAB\n");
-printf ("Ripple Envelope = %e \n", ripple_env);
 printf ("Average Envelope = %e \n", average_env);
 printf ("Envelope_END\n\n");
 
+%-----------------------Voltage Regulator---------------------------------------
 ndiode = 20;
-VOn = 0.6;
+VON = 0.6;
 
-vOreg = zeros(1, length(t));
-dc_vOreg = 0;
-ac_vOreg = zeros(1, length(t));
+vreg = zeros(1, length(t));
+dc_vreg = 0;
+ac_vreg = zeros(1, length(t));
 	
-%dc component regulator
-if average_env >= VOn*ndiode
-  dc_vOreg = VOn*ndiode;
+if average_env >= VON*ndiode       %DC regulator
+  dc_vreg = VON*ndiode;
 else
-  dc_vOreg = average_env;
+  dc_vreg = average_env;
 endif
 	
-  
-%ac component regulator
-vt = 0.025;
+ 
+VT = 0.025;                   %AC component regulator
 Is = 1e-14;
 eta = 1;
 
-rd = eta*vt/(Is*exp(VOn/(eta*vt)));
+RD = eta*VT/(Is*exp(VON/(eta*VT)));
 
-ac_vOreg = ((ndiode*rd)/(ndiode*rd +R2))*(venv-average_env);
+ac_vreg = ((ndiode*RD)/(ndiode*RD +R2))*(venv-average_env);
 
-vOreg = dc_vOreg+ac_vOreg;
+vreg = dc_vreg+ac_vreg;
 
 %plots of the values
 	
@@ -122,26 +115,36 @@ vOreg = dc_vOreg+ac_vOreg;
 
 fig1 = figure(1);
 title("Envelope and regulator output voltages")
-plot (t*1000, vfr, ";vo_{rectified}(t);", t*1000,venv, ";vo_{envelope}(t);", t*1000,vOreg, ";vo_{regulator}(t);");
+plot (t*1000, vfr, ";vo_{rectified}(t);", t*1000,venv, ";vo_{envelope}(t);", t*1000,vreg, ";vo_{regulator}(t);");
 xlabel ("t[ms]")
 ylabel ("v_O [Volts]")
 legend('Location','northeast');
-print (fig1, "vout_reg_env.eps", "-depsc");
+print (fig1, "Output", "-depsc");
+close(fig1)
 	
 %Deviations (vOenv - 12) 
 fig2 = figure(2);
-title("Defletion from the wanted DC voltage")
-plot (t*1000,venv-12, ";vo-12 (t);",t*1000,vOreg-12,"color","r",";vOreg-12 (t);");
+title("Deviation from the DC voltage")
+plot (t*1000,venv-12, ";vo-12 (t);",t*1000,vreg-12,"color","r",";vOreg-12 (t);");
 xlabel ("t[ms]")
 ylabel ("v_O [Volts]")
 legend('Location','northeast');
-print (fig2, "defletion.eps", "-depsc");
+print (fig2, "Deviation.eps", "-depsc");
+close(fig2)
 	
-average_reg = mean(vOreg);
-ripple_reg = max(vOreg)-min(vOreg);
+average_reg = mean(vreg);
+ripple_reg = max(vreg)-min(vreg);
 
-printf ("RippleRegulator = %e \n", ripple_reg);
-printf ("AverageRegulator= %e \n\n", average_reg);
+printf ("V_TAB\n");
+printf ("$V_{max}$= %e \n", max(vreg));
+printf ("$V_{min}$= %e \n", min(vreg));
+printf ("Average Voltage = %e \n", average_reg);
+printf ("V_END\n\n");
+
+printf ("Ripple_TAB\n");
+printf ("Ripple Voltage= %e \n", ripple_reg);
+%printf ("Voltage Difference = %e \n", COLOCAR AQUI);
+printf ("Ripple_END\n\n");
 
 total_cost = ((R1+R2)/1000)+C*1000000+((ndiode+4)*0.1);
 merit=1/(total_cost*(ripple_reg+abs(average_reg-12)+10e-6));
