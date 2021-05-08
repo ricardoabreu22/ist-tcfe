@@ -143,7 +143,7 @@ printf ("V_END\n\n");
 
 printf ("Ripple_TAB\n");
 printf ("Ripple Voltage= %e \n", ripple_reg);
-%printf ("Voltage Difference = %e \n", COLOCAR AQUI);
+printf ("Average Voltage Difference = %e \n", average_reg - 12);
 printf ("Ripple_END\n\n");
 
 total_cost = ((R1+R2)/1000)+C*1000000+((ndiode+4)*0.1);
