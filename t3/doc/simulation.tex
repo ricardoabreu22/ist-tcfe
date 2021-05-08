@@ -4,46 +4,23 @@
 \subsection{Transient Analysis}
 
 
-Figure~\ref{fig:trans2} shows the simulated transient analysis results for the
-envelope detector output voltage, $V_3$.
+Figure~\ref{fig:trans2} shows the simulated transient analysis results for input voltage of the secondary circuit,
+the envelope detector output voltage, $V_3$, the voltage regulator output voltage, $V_4$ 
+and the average voltage difference, $V_4$-12 Volts.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.4\linewidth]{trans2.pdf}
-\caption{Transient output voltage of the envelope detector.}
+\caption{Transient input voltage of the secondary circuit and transient output voltage of both the envelope detector and 
+voltage regulator and the average voltage difference.}
 \label{fig:trans2}
 \end{figure}
 
-By analysing the result of the simulation we notice that the solution (and the following ones) 
-resulted in an aproximated sinusoidal fuction: in fact, because of the average voltage is not ideal,
-the curve has an upward sinusoidal motion and a downward motion described by a negative exponential.  
-As far as the result is concerned, the form of the theoretical solution match the one obtained by NGSpice.
-
-
-Figure~\ref{fig:acm} shows the simulated transient analysis results for the output voltage, which is the output of the
-voltage regulator, $V_4$.
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.4\linewidth]{acm.pdf}
-\caption{Output voltage of the circuit.}
-\label{fig:acm}
-\end{figure}
-
-Figure~\ref{fig:acp} shows the phase, in degrees, of the frequency response for $v_6$, $v_s$ and the voltage in the capacitor $C$ 
-of the circuit under analysis. Compared to the theoretical analysis results, we notice that, again, we obtain the same results, 
-since the graphic curves for the theoretical and simulation analysis are similar.
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.4\linewidth]{acp.pdf}
-\caption{Phase response for node 6, voltage source $V_s$ and capacitor $C$}
-\label{fig:acp}
-\end{figure}
-
-
-	Comparing both figures with the respective theoretical results, we conclude that both are similar. Again, the form of each graphic
-	is similar to the one described for the envelope detector voltage. If, in this case, we used the same scale as Figure~\ref{fig:trans2},
-	we would see that the ripple voltage and voltage difference are very small, which means that we obtained a decent result for 2 of the 3
-	parameters that influence the merit.
-
+By analysing the result of the simulation we notice that the output solution resulted in an aproximated sinusoidal 
+fuction: in fact, because of the average voltage is not ideal, the curve has an upward sinusoidal motion and 
+a downward motion described by a negative exponential. The input voltage is described by a sinusoidal fuction, as expected. 
+As far as the result is concerned, the form of the theoretical solution match the one obtained by NGSpice. 
+Note that, because of the scale, we can not see the wave form of the ripple voltage and voltage difference because 
+they are very small, which means that we obtained a decent result for 2 of the 3 parameters that influence the merit.
 
 
 	Table~\ref{tab1:op} shows the measured results for the maximum, minimum and average output voltage of the circuit $V_4$. 
@@ -104,10 +81,10 @@ Note that we used the simulated voltage results to calculate the value of merit.
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Merit} \\ \hline
+    {\bf Formula} & {\bf Merit} \\ \hline
     \input{../sim/op3_tab}
   \end{tabular}
-  \caption{Number of components used, its cost and the resultant figure of merit.}
+  \caption{Figure of merit with a cost of 222.4 monetary units (MU).}
   \label{tab2:op}
 \end{table}
 

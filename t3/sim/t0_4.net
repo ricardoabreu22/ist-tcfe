@@ -67,29 +67,21 @@ set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
+op
+
+tran 1e-5 2.6 2.4
 
 
-tran 1e-5 2600e-3 2400e-3
-
-
-hardcopy trans2.ps v(3) xlabel 'Time' ylabel 'Voltage'
+hardcopy trans2.ps v(1)-v(2) v(3) v(4) v(4)-12 xlabel 'Time' ylabel 'Voltage'
 echo trans2_FIG
-hardcopy acm.ps  v(4) xlabel 'Time' ylabel 'Voltage'
-echo acm_FIG
-*wrdata voltage.mat v(4)
-hardcopy acp.ps  v(4)-12 xlabel 'Time' ylabel 'Voltage'
-echo acp_FIG
 
 
 echo "op1_TAB"
-print maximum(v(4))
-print minimum(v(4))
-print mean(v(4))
+print maximum(v(4)) minimum(v(4)) mean(v(4))
 echo "op1_END"
 
 echo "op2_TAB"
-print maximum(v(4))-minimum(v(4))
-print mean(v(4)-12)
+print maximum(v(4))-minimum(v(4)) mean(v(4)-12)
 echo "op2_END"
 
 echo "op3_TAB"
