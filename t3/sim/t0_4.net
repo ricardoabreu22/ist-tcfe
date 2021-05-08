@@ -6,10 +6,10 @@
 .param n=1/11.20348888888
 
 * supply voltage
-Vs 400 GND sin(0 230 50)
-F1 400 GND E1 n
+Vs 30 GND sin(0 230 50)
+F1 30 GND E1 n
 
-E1 1 2 400 GND n
+E1 1 2 30 GND n
 
 .model Default D
 
@@ -51,7 +51,6 @@ D24 23 0 Default
 .measure tran Vmin  MIN v(4) from=2.4 to=2.6
 .measure tran Vmax  MAX v(4) from=2.4 to=2.6
 
-.print Vavg Vmin Vmax
 
 .print
 
@@ -80,6 +79,23 @@ echo acm_FIG
 *wrdata voltage.mat v(4)
 hardcopy acp.ps  v(4)-12 xlabel 'Time' ylabel 'Voltage'
 echo acp_FIG
+
+
+echo "op1_TAB"
+print maximum(v(4))
+print minimum(v(4))
+print mean(v(4))
+echo "op1_END"
+
+echo "op2_TAB"
+print maximum(v(4))-minimum(v(4))
+print mean(v(4)-12)
+echo "op2_END"
+
+echo "op3_TAB"
+print 1/ (222.4* ((maximum(v(4))-minimum(v(4))) + mean(v(4)-12) + 1e-6))
+echo "op3_END"
+
 
 quit
 .endc
