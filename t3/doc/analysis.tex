@@ -5,7 +5,7 @@ In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
 theoretically. We will begin by analyzing the Envelope Detector circuit and, after that, the Voltage regulator circuit, in order to predict their outputs.
 
 The theoretical values will be obtained by applying Kirchhoff laws and the diode equations.
-Considering the circuiy of Figure~\ref{fig:circuit}, is composed by a Voltage source, a transformer, an envelope detector and a voltage regulator.
+Considering the circuit of Figure~\ref{fig:circuit}, it is composed by a Voltage source, a transformer, an envelope detector and a voltage regulator.
 
 The amplitude and the frequency of the voltage source are equal to 230V and 50Hz, respectively. However, the transformer will convert this into a lower voltage, supllying the rest of the circuit with a voltage, Vs(t):
 \begin{equation}
@@ -17,6 +17,7 @@ The amplitude and the frequency of the voltage source are equal to 230V and 50Hz
   w= 2 \cdot \pi \cdot f
   \label{eq:Vs(t)}
 \end{equation}
+It is also important to notice that $A=(\frac{230V}{n})$. The value of the constant $n$ was already indicated on Section~\ref{sec:introduction}.
 
 \subsection{Envelope Detector}
 The envelope detector consists of a rectifier, composed by four diodes, a resistor, R1, and a capacitor, C.
@@ -29,7 +30,7 @@ The resistor and the capacitor are used to smooth the wave.
 \subsection{Voltage Detector}
 
 \subsection{Voltage Regulator Circuit}
-The voltage regulator circuit takes advantage of the fact the diodes are non-linear components to attenuate the oscilations in the input signal without frequency dependence. In out case the voltage regulator is composed by X diodes connect in series and one resistance with the value of R2.\\
+The voltage regulator circuit takes advantage of the fact the diodes are non-linear components to attenuate the oscilations in the input signal without frequency dependence. In our case, the voltage regulator is composed by X diodes connect in series and one resistance with the value of R2.\\
 
 The DC voltage in the regulator is the minimum between the average envelope and the voltage in each diode terminals times the number of diodes connected in series.
 Using the equation:
@@ -41,5 +42,3 @@ Using the equation:
 This means that the output DC voltage will be the sum of the AC voltage previously mentioned and the DC voltage previously mentioned, giving us the following graphics:
 *INSERIR GRÁFICOS*
 Ideally, the output DC voltage will be a constant equal to 12 Volts. And by analysing the graph and comparing it to the simulation we can conclude that it was /was not achieved a acceptable result.
-
-

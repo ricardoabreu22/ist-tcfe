@@ -17,14 +17,21 @@ Vin = 230;
 
 %--------------------Secondary Circuit (chosen data)----------------------------
 R1 = 60000;
-R2 = 63000;
-C = 0.150;
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TABELA COM VALORES POR NO REPORT E LIDA NO NGSPICE--------------------------------------------------------------------------------
-
+R2 = 60000;
+C = 100e-6;
 %-----------------------Transformer---------------------------------------------
-n = 11;
+n = 11.203488888888;
 A = Vin/n;
+
+%Data table
+ printf("Data_TAB \n"); 
+ printf("$V_{in}$ = %e V\n", Vin);
+ printf("$f$ = %e Hz\n", f); 
+ printf("$n$ = %e \n", n);
+ printf("$R_{1}$ = %e Ohm \n", R1);
+ printf("$R_{2}$ = %e Ohm \n", R2);
+ printf("$C$ = %e F \n", C);
+ printf("Data_END \n \n");
 
 %-----------------------Envelope Detector---------------------------------------
 t=linspace(0, 10*(T/2), 1000);
@@ -64,11 +71,16 @@ average_env = ripple_env/2 + min(venv)
 
 printf ("Envelope_TAB\n");
 printf ("Ripple Envelope = %e \n", ripple_env);
-printf ("Average Envelope = %e \n", average_env);
 printf ("Envelope_END\n\n");
 
 %-----------------------Voltage Regulator---------------------------------------
-num_diode = 20;
+
+printf ("Envelope_TAB\n");
+printf ("Ripple Envelope = %e \n", ripple_env);
+printf ("Average Envelope = %e \n", average_env);
+printf ("Envelope_END\n\n");
+
+ndiode = 20;
 VOn = 0.6;
 
 vOreg = zeros(1, length(t));
@@ -76,8 +88,8 @@ dc_vOreg = 0;
 ac_vOreg = zeros(1, length(t));
 	
 %dc component regulator
-if average_env >= VOn*num_diode
-  dc_vOreg = VOn*num_diode;
+if average_env >= VOn*ndiode
+  dc_vOreg = VOn*ndiode;
 else
   dc_vOreg = average_env;
 endif
@@ -90,7 +102,7 @@ eta = 1;
 
 rd = eta*vt/(Is*exp(VOn/(eta*vt)));
 
-ac_vOreg = ((num_diode*rd)/(num_diode*rd +R2))*(venv-average_env);
+ac_vOreg = ((ndiode*rd)/(ndiode*rd +R2))*(venv-average_env);
 
 vOreg = dc_vOreg+ac_vOreg;
 
@@ -131,10 +143,8 @@ ripple_reg = max(vOreg)-min(vOreg);
 printf ("RippleRegulator = %e \n", ripple_reg);
 printf ("AverageRegulator= %e \n\n", average_reg);
 
-total_cost = ((R1+R2)/1000)+C*1000000+((num_diode+4)*0.1);
+total_cost = ((R1+R2)/1000)+C*1000000+((ndiode+4)*0.1);
 merit=1/(total_cost*(ripple_reg+abs(average_reg-12)+10e-6));
 
 printf ("Total cost of the components = %e \n", total_cost);
 printf ("Merit= %e \n", merit);
-	
-%-------------------------plots-------------------------------------------------
