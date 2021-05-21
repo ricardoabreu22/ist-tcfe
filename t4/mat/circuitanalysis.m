@@ -23,6 +23,9 @@ RC1=1000;
 RE1=100;
 CS=10*1e-3;
 Cb=10*1e-3;
+Co=10 *1e-6;
+RL=8;
+Vinput=1;
 
  printf("GSData_TAB \n"); 
  printf("$V_{CC}$ = %e V\n", VCC);
@@ -169,3 +172,44 @@ ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
  printf("$Z_{I}$ = %e Ohm\n", ZI);
  printf("$Z_{O}$ = %e Ohm\n", ZO); 
  printf("Final_END \n \n");
+ 
+%------------------------------Teoria Ponto 3------------------------------------
+f_H=f;
+f_L= (1/(3*CS)+ 1/((ZO+RL)*Co) +1/((ZI+RS)*Cb))/(2*pi);
+band=f_H - f_L
+
+freq=logspace(1,8);
+
+for i=1:50
+ wfreq=2*pi*freq(i)
+ZCS   = 1/(wfreq*j*CS);
+ZCB   = 1/(wfreq*j*Cb);
+ZEB = 1/(1/RE1 + 1/ZCB);
+zpi2  = 1/gpi2;
+zo2   = 1/go2;
+ZE2 = 1/(1/zo2 + 1/RE2);
+ZCO   = 1/(wfreq*j*Co);
+
+ HOT = [  RS+ZCS+RB , -RB, 0 , 0 , 0 , 0 , 0; ...
+ 	0 , -ZEB , -ro1, ZEB + ro1 + RC1, -RC1, 0, 0 ; ...
+        0 , rpi1*gm1 , 1  , 0 , 0, 0 , 0  ; ...
+        0 , 0 , 0  , -RC1, zpi2+RC1, ZE2 , -ZE2; ...
+        0 , 0  , 0  , 0  , -1-zpi2*gm2 , 1  , 0 ; ...
+        0, 0 , 0  , 0 , 0 , -ZE2, ZE2+ZCO+RL ; ...
+        -RB  , RB + rpi1 + ZEB , 0 , -ZEB  , 0 , 0 , 0 ];
+        
+DOG = [Vinput; 0; 0 ; 0 ; 0; 0; 0];
+
+Gain= HOT\DOG;
+
+GaindB(i) = 20*log10(abs(Gain(7)*RL/Vinput))
+endfor
+
+fig1=figure(1)
+plot(log10(freq),GaindB,"r");
+xlabel("log(f) (Hz)");
+ylabel("Gain (dB)");
+grid on;
+print (fig1, "Gain", "-depsc");
+close(fig1)
+
