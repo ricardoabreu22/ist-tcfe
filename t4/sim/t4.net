@@ -1,3 +1,27 @@
+T4 Laboratory Simulation Results
+
+.param Rin_value=100
+.param Ci_value=1m
+.param R1_value=80k
+.param R2_value=20k
+.param Rc_value=1k
+.param Re_value=100
+.param Cb_value=1m
+.param Rout_value=100
+.param Co_value=1u
+.param RL_value=8
+
+.csparam Rin_value={Rin_value}
+.csparam Ci_value={Ci_value}
+.csparam R1_value={R1_value}
+.csparam R2_value={R2_value}
+.csparam Rc_value={Rc_value}
+.csparam Re_value={Re_value}
+.csparam Cb_value={Cb_value}
+.csparam Rout_value={Rout_value}
+.csparam Co_value={Co_value}
+.csparam RL_value={RL_value}
+
 .options savecurrents
 
 * PHILIPS BJT'S
@@ -6,34 +30,32 @@
 
 Vcc vcc 0 12.0
 Vin in 0 0 ac 1.0 sin(0 10m 1k)
-Rin in in2 100
+Rin in in2 {Rin_value}
 
 * input coupling capacitor
-Ci in2 base 1m
+Ci in2 base {Ci_value}
 
 * bias circuit
 R1 vcc base 80k
-R2 base 0 20k
+R2 base 0 {R2_value}
 
 * gain stage
 Q1 coll base emit BC547A
-Rc vcc coll 1k
-Re emit 0 100
+Rc vcc coll {Rc_value}
+Re emit 0 {Re_value}
 
 * bypass capacitor
-Cb emit 0 1m
-
+Cb emit 0 {Cb_value}
 
 * output stage
 Q2 0 coll emit2 BC557A
-Rout emit2 vcc 100
+Rout emit2 vcc {Rout_value}
 
 * output coupling capacitor
-Co emit2 out 1u
+Co emit2 out {Co_value}
 
 * load
-RL out out2 8
-Vout out2 0 *to sense the current through RL
+RL out 0 8 {RL_value}
 
 .op
 .end
@@ -50,57 +72,57 @@ hardcopy vo1.ps vdb(coll)
 
 * frequency analysis
 ac dec 10 10 100MEG
-plot vdb(coll)
-plot vp(coll)
+
+
+*plot vdb(coll)
 hardcopy vo1f.ps vdb(coll)
+*plot vp(coll)
+hardcopy vo1f2.ps vp(coll)
 
-
-plot vdb(out)
-plot vp(out)
+*plot vdb(out)
 hardcopy vo2f.ps vdb(out)
+*plot vph(out)
+hardcopy vo2f2.ps vp(out)
+
+
+let gain = db(v(out)[40]/v(in)[40])
+hardcopy gain.ps db(v(out)/v(in))
+hardcopy gain2.ps ph(v(out)/v(in))
+
+
+meas AC wanted MAX vdb(out)
+let ref=wanted-3
+
+meas AC low WHEN vdb(out) = ref
+meas AC up WHEN vdb(out) = ref CROSS=LAST
+
+
+let resist=(Rin_value+R1_value+R2_value+Rc_value+Re_value+Rout_value+RL_value)*0.001
+let capac=(Ci_value+Cb_value+Co_value)*1000000
+let trans=2
+let bandwidth=up-low
+let cost=resist+capac+trans*0.1
+let merit=((gain*bandwidth)/(cost*low))
+
+
+echo "op_TAB"
+print low
+print cost
+print gain
+print bandwidth
+print merit
+echo "op_END"
 
 
 *input impedance in kohm
-*print all
+let Zin=abs(v(in2)[40]/vin#branch[40]/(-1000))
 
-plot abs(v(in2)[40]/vin#branch[40]*(-1000))
-print v(in2)[40]/vin#branch[40]*(-1000)
-
-
-*output impedance in kohm
-
-plot abs(v(out)[40]/vout#branch[40]*(-1000))
-print v(out)[40]/vout#branch[40]*(-1000)
-
-
-*****************************************************************
-
-*total gain
-*echo v(out)
-*echo $&v(out)
-*echo v(coll)
-*echo $&v(coll)
-*echo v(in)
-*echo $&v(in)
-*echo v(out)/v(in)
-
-print v(out)/v(in)
-
-*let threshold = vecmax(vdb(out))-3
-
-*meas ac lco WHEN vdb(out) = threshold RISE = 1
-*meas ac uco WHEN vdb(out) = threshold CROSS = LAST
-
-*input impedance in kohm
-*print vecmax(v(in2))/(vecmax(v(in))-vecmax(v(in2)))/100*1000
-
-*need a different setup to measure output impedance
-
-*print lco uco threshold vecmax(abs(v(out)/v(in)))
-
+echo "input_TAB"
+print Zin
+echo "input_END"
 
 
 quit
-
-.endc 
-
+.endc
+ 
+.end
