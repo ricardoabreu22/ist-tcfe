@@ -1,99 +1,44 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
-
 In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
 theoretically. We will begin by analyzing the Envelope Detector circuit and, after that, the Voltage regulator circuit, in order to predict their outputs.
 
 The theoretical values will be obtained by applying Kirchhoff laws and the diode equations.
 Considering the circuit of Figure~\ref{fig:circuit}, it is composed by a Voltage source, a transformer, an envelope detector and a voltage regulator.
 
-The amplitude and the frequency of the voltage source are equal to 230V and 50Hz, respectively. However, the transformer will convert this into a lower voltage, supllying the rest of the circuit with a voltage, Vs(t):
-\begin{equation}
-  V_s(t)= A \cdot cos(wt)
-  \label{eq:Vs(t)}
-\end{equation}
-, where
-\begin{equation}
-  w= 2 \cdot \pi \cdot f
-\end{equation}
-It is important to notice that $A=(\frac{230V}{n})$. The value of the constant $n$ was already indicated on Section~\ref{sec:introduction}.
-
-\subsection{Envelope Detector}
-The envelope detector consists of a rectifier, composed by four diodes, a resistor, R1, and a capacitor, C.
-
-The rectifier used on this AC/DC converter was a full-wave rectifier, more specifically, a bridge rectifier. Theoretically, this rectifier produce an output of $V_{rectifier}=|V_s(t)|$.
-
-The capacitor reduces the magnitude of the voltage. This way, we need to determine when diodes are ON and OFF, where
-\begin{equation}
-  tOFF = \frac{1}{w}\cdot atan(\frac{1}{w\cdot R1\cdot C})
-\end{equation}
-So, for t$<$tOFF,
-\begin{equation}
-  V_{envelope}=V_{rectifier}
-\end{equation} 
-but if t$>$tOFF,
-\begin{equation}
-  V_{envelope} = A\cdot cos(w \cdot tOFF)\cdot exp(\frac{-(t-tOFF)}{R1\cdot C})
-\end{equation} 
-
-The ripple voltage is equal to $max(V_{envelope})-min(V_{envelope})$.
-
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
      \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline 
-    \input{../mat/Envelope_tab}
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/GSData_tab}
   \end{tabular}
-  \caption{Ripple and average envelope values}
-  \label{tab:env}
-\end{table}
-
-\subsection{Voltage Regulator Circuit and Final Outputs}
-The voltage regulator circuit takes advantage of the fact the diodes are non-linear components to attenuate the oscilations in the input signal without frequency dependence. In our case, the voltage regulator is composed by 20 diodes connect in series and one resistance with the value of R2.\\
-
-The DC voltage in the regulator is the minimum between the average envelope and the voltage in each diode terminals times the number of diodes connected in series.
-Using the equation:
-\begin{equation}
- r_d= \frac {\eta \cdot V_T}{ I_s \cdot \exp(\frac{V_d}{\eta \cdot V_t})}
-  \label{eq: rd}
-\end{equation}
-, to compute the resistance seen by each diode terminals and calculate the AC voltage seen in the regulator.
-This means that the output DC voltage will be the sum of the AC voltage previously mentioned and the DC voltage previously mentioned, giving us the following graphics:
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{Output.eps}
-\caption{Rectifier output, Envelope Output, Voltage Regulator Output}
-\label{fig:outputs}
-\end{figure}
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.6\linewidth]{Deviation.eps}
-\caption{Output AC components + DC deviation}
-\label{fig:deviation}
-\end{figure}
-
-Furthermore, we also obtain:
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|l|r|}
-     \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline   
-    \input{../mat/V_tab}
-  \end{tabular}
-  \caption{Average Regulator}
-  \label{tab:vavg}
+  \caption{Gain Stage Data}
+  \label{tab:datags}
 \end{table}
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
      \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline    
-    \input{../mat/Ripple_tab}
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/GSBijector_tab}
   \end{tabular}
-  \caption{Ripple Voltage}
-  \label{tab:ripple}
+  \caption{Bijector Data}
+  \label{tab:bgs}
 \end{table}
 
-Ideally, the output DC voltage will be a constant equal to 12 Volts. And by analysing the graph and comparing it to the simulation we can conclude that it was achieved a acceptable result.
+\subsection{Gain Stage}
+
+\subsubsection{Operating Point}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/GSOP_tab}
+  \end{tabular}
+  \caption{OP - Gain Stage}
+  \label{tab:opgs}
+\end{table}
