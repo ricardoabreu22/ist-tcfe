@@ -97,26 +97,64 @@ ZO1 = 1/(1/ZX+1/RC1)
 RE1=0
 ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
 ZO1 = 1/(1/ro1+1/RC1)
+
+ printf("GSAV_TAB \n"); 
+ printf("$A_{V1}$ = %e dB\n", AVI_DB);
+ printf("$A_{VIsimple}$ = %e dB\n", AVIsimple_DB); 
+ printf("GSAV_END \n \n"); 
+ 
+ printf("GSZ_TAB \n"); 
+ printf("$Z_{I1}$ = %e Ohm\n", ZI1);
+ printf("$Z_{O1}$ = %e Ohm\n", ZO1); 
+ printf("GSZ_END \n \n");
+
 %-------------------------------------------------------------------------------
 
 %---------------------------Ouput Stage-----------------------------------------
+%-----Data-----
 BFP = 227.3
 VAFP = 37.2
 RE2 = 100
 VEBON = 0.7
+ printf("OSBijector_TAB \n"); 
+ printf("$beta$ = %f \n", BFP); 
+ printf("$V_{AFP}$ = %f V\n", VAFP);
+ printf("$V_{BEON}$ = %f V \n", VEBON);
+ printf("OSBijector_END \n \n");
+
+%-----OP Analysis-----
 VI2 = VO1
 IE2 = (VCC-VEBON-VI2)/RE2
 IC2 = BFP/(BFP+1)*IE2
 VO2 = VCC - RE2*IE2
-
-gm2 = IC2/VT
+ printf("OSOP_TAB \n"); 
+ printf("$V_{I2}$ = %e V\n", VI2);
+ printf("$I_{E2}$ = %e A \n", IE2);
+ printf("$I_{C2}$ = %e A \n", IC2);
+ printf("$V_{O2}$ = %e V \n", VO2);
+ printf("OSOP_END \n \n");
+ 
+ 
+%-----Incremental Circuit-----
+gm2 = IC2/VT                               %--Incremental Parameters--
 go2 = IC2/VAFP
 gpi2 = gm2/BFP
 ge2 = 1/RE2
 
+%AC Analysis (Voltage gain)
 AV2 = gm2/(gm2+gpi2+go2+ge2)
 ZI2 = (gm2+gpi2+go2+ge2)/gpi2/(gpi2+go2+ge2)
 ZO2 = 1/(gm2+gpi2+go2+ge2)
+
+ printf("OSAV_TAB \n"); 
+ printf("$A_{V2}$ = %e dB\n", AV2);
+ printf("OSAV_END \n \n"); 
+ 
+ printf("OSZ_TAB \n"); 
+ printf("$Z_{I2}$ = %e Ohm\n", ZI2);
+ printf("$Z_{O2}$ = %e Ohm\n", ZO2); 
+ printf("OSZ_END \n \n");
+
 %-------------------------------------------------------------------------------
 
 %------------------------------Total--------------------------------------------
@@ -125,3 +163,9 @@ AV = (gB+gm2/gpi2*gB)/(gB+ge2+go2+gm2/gpi2*gB)*AV1
 AV_DB = 20*log10(abs(AV))
 ZI=ZI1
 ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
+
+ printf("Final_TAB \n"); 
+ printf("$A_{V}$ = %e dB\n", AV_DB);
+ printf("$Z_{I}$ = %e Ohm\n", ZI);
+ printf("$Z_{O}$ = %e Ohm\n", ZO); 
+ printf("Final_END \n \n");
