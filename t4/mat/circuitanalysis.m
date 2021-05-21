@@ -26,12 +26,12 @@ Cb=10*1e-3;
 
  printf("GSData_TAB \n"); 
  printf("$V_{CC}$ = %e V\n", VCC);
- printf("$R_{S}$ = %e Ohm\n", RS); 
- printf("$R_{B1}$ = %e Ohm \n", RB1);
- printf("$R_{B2}$ = %e Ohm \n", RB2);
- printf("$R_{C1}$ = %e Ohm \n", RC1);
- printf("$R_{E1}$ = %e Ohm \n", RE1);
- printf("$C_{S}$ = %e F \n", CS);
+ printf("$R_{in}$ = %e Ohm\n", RS); 
+ printf("$R_{1}$ = %e Ohm \n", RB1);
+ printf("$R_{2}$ = %e Ohm \n", RB2);
+ printf("$R_{c}$ = %e Ohm \n", RC1);
+ printf("$R_{e}$ = %e Ohm \n", RE1);
+ printf("$C_{in}$ = %e F \n", CS);
  printf("$C_{b}$ = %e F \n", Cb);
  printf("GSData_END \n \n");
 
@@ -41,10 +41,10 @@ VAFN=69.7;
 VBEON=0.7;
 
  printf("GSBijector_TAB \n"); 
- printf("$V_{T}$ = %e V\n", VT);
- printf("$beta$ = %e \n", BFN); 
- printf("$V_{A}$ = %e V\n", VAFN);
- printf("$V_{BEON}$ = %e V \n", VBEON);
+ printf("$V_{T}$ = %f V\n", VT);
+ printf("$beta$ = %f \n", BFN); 
+ printf("$V_{A}$ = %f V\n", VAFN);
+ printf("$V_{BEON}$ = %f V \n", VBEON);
  printf("GSBijector_END \n \n");
 
 %-----Operating Point Analysis-----
@@ -68,15 +68,17 @@ VCE=VO1-VE1;                        %VCE
  printf("GSOP_END \n \n");
 
 
-%-----Incremental Analysis-----            (for medium frequencies)
-gm1=IC1/VT                         %gm            --Data--
+%-----Incremental Circuit-----            (for medium frequencies)
+
+gm1=IC1/VT                         %gm    --Incremental Parameters--
 rpi1=BFN/gm1                       %rpi
 ro1=VAFN/IC1                       %ro
 
-RSB=RB*RS/(RB+RS)
+RSB=RB*RS/(RB+RS)                  %RS||RB
 
-AV1 = RSB/RS * RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RSB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)
-AVI_DB = 20*log10(abs(AV1))
+%AC Analysis (Incremantal circuit gain)
+AV1 = RSB/RS * RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RSB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)   %vo/vi
+AVI_DB = 20*log10(abs(AV1))                                                                     %vo/vi(dB)
 AV1simple = RB/(RB+RS) * gm1*RC1/(1+gm1*RE1)
 AVIsimple_DB = 20*log10(abs(AV1simple))
 
@@ -95,6 +97,7 @@ ZO1 = 1/(1/ZX+1/RC1)
 RE1=0
 ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
 ZO1 = 1/(1/ro1+1/RC1)
+%-------------------------------------------------------------------------------
 
 %---------------------------Ouput Stage-----------------------------------------
 BFP = 227.3
@@ -114,9 +117,9 @@ ge2 = 1/RE2
 AV2 = gm2/(gm2+gpi2+go2+ge2)
 ZI2 = (gm2+gpi2+go2+ge2)/gpi2/(gpi2+go2+ge2)
 ZO2 = 1/(gm2+gpi2+go2+ge2)
+%-------------------------------------------------------------------------------
 
-
-%total
+%------------------------------Total--------------------------------------------
 gB = 1/(1/gpi2+ZO1)
 AV = (gB+gm2/gpi2*gB)/(gB+ge2+go2+gm2/gpi2*gB)*AV1
 AV_DB = 20*log10(abs(AV))

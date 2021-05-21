@@ -1,21 +1,29 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
-theoretically. We will begin by analyzing the Envelope Detector circuit and, after that, the Voltage regulator circuit, in order to predict their outputs.
+theoretically. We will begin by analyzing the Gain Stage circuit and, after that, the Output Stage circuit.
+%in order to predict their outputs. 
 
-The theoretical values will be obtained by applying Kirchhoff laws and the diode equations.
-Considering the circuit of Figure~\ref{fig:circuit}, it is composed by a Voltage source, a transformer, an envelope detector and a voltage regulator.
+Thus, we will start by computing the Operating Point using the theoretical DC
+model studied and comparing it to Ngspice’s OP.
 
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|l|r|}
-     \hline    
-    {\bf Name} & {\bf Value} \\ \hline   
-    \input{../mat/GSData_tab}
-  \end{tabular}
-  \caption{Gain Stage Data}
-  \label{tab:datags}
-\end{table}
+Then, we will compute the gain and input and output impedances separately for the 2 stages. 
+
+Finally, we will compute the frequency response Vo(f)/Vi(f).
+
+%The theoretical values will be obtained by applying Kirchhoff laws and the diode equations.
+%Considering the circuit of Figure~\ref{fig:circuit}, it is composed by a Voltage source, a transformer, an envelope detector and a voltage regulator.
+\subsection{Gain Stage}
+In this subsection, we will analyze the Gain Stage circuit.
+
+In order to make this task easier, we used Thévenin's equivalent of bias circuit. Its diagram is represented in Figure~\ref{fig:gscircuit} as well as the BC547A model used in this assignment is shown in table~\ref{tab:bgs}.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{gainstage.pdf}
+\caption{Gain Stage Circuit}                                     %%%%%%%%%%LEGENDA
+\label{fig:gscircuit}
+\end{figure}
+
 
 \begin{table}[H]
   \centering
@@ -24,13 +32,12 @@ Considering the circuit of Figure~\ref{fig:circuit}, it is composed by a Voltage
     {\bf Name} & {\bf Value} \\ \hline   
     \input{../mat/GSBijector_tab}
   \end{tabular}
-  \caption{Bijector Data}
+  \caption{BC547A model}
   \label{tab:bgs}
 \end{table}
 
-\subsection{Gain Stage}
-
 \subsubsection{Operating Point}
+Considering the equations of the lecture 17 and the theoretical DC model studied , we compute the OP. The table~\ref{tab:opgs} presents the results obtained.
 
 \begin{table}[H]
   \centering
@@ -42,3 +49,5 @@ Considering the circuit of Figure~\ref{fig:circuit}, it is composed by a Voltage
   \caption{OP - Gain Stage}
   \label{tab:opgs}
 \end{table}
+
+
