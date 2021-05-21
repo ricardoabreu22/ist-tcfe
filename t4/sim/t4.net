@@ -32,7 +32,8 @@ Rout emit2 vcc 100
 Co emit2 out 1u
 
 * load
-RL out 0 8
+RL out out2 8
+Vout out2 0 *to sense the current through RL
 
 .op
 .end
@@ -52,43 +53,54 @@ ac dec 10 10 100MEG
 plot vdb(coll)
 plot vp(coll)
 hardcopy vo1f.ps vdb(coll)
-print v(coll)
 
 
 plot vdb(out)
 plot vp(out)
-hardcopy vo2f.ps vdb(coll)
+hardcopy vo2f.ps vdb(out)
+
+
+*input impedance in kohm
+*print all
+
+plot abs(v(in2)[40]/vin#branch[40]*(-1000))
+print v(in2)[40]/vin#branch[40]*(-1000)
+
+
+*output impedance in kohm
+
+plot abs(v(out)[40]/vout#branch[40]*(-1000))
+print v(out)[40]/vout#branch[40]*(-1000)
+
+
+*****************************************************************
 
 *total gain
-echo v(out)
-echo $&v(out)
-echo v(coll)
-echo $&v(coll)
-echo v(in)
-echo $&v(in)
-echo v(out)/v(in)
+*echo v(out)
+*echo $&v(out)
+*echo v(coll)
+*echo $&v(coll)
+*echo v(in)
+*echo $&v(in)
+*echo v(out)/v(in)
 
 print v(out)/v(in)
 
-let threshold = vecmax(vdb(out))-3
+*let threshold = vecmax(vdb(out))-3
 
-meas ac lco WHEN vdb(out) = threshold RISE = 1
-meas ac uco WHEN vdb(out) = threshold CROSS = LAST
+*meas ac lco WHEN vdb(out) = threshold RISE = 1
+*meas ac uco WHEN vdb(out) = threshold CROSS = LAST
 
 *input impedance in kohm
-print vecmax(v(in2))/(vecmax(v(in))-vecmax(v(in2)))/100*1000
+*print vecmax(v(in2))/(vecmax(v(in))-vecmax(v(in2)))/100*1000
 
 *need a different setup to measure output impedance
 
-print lco uco threshold vecmax(abs(v(out)/v(in)))
+*print lco uco threshold vecmax(abs(v(out)/v(in)))
+
+
+
 quit
-.endc 
-
-
-*input impedance in kohm
-*print v(in2)[40]/(v(in)[40]-v(in2)[40])/100*1000
-
-*need a different setup to measure output impedance
 
 .endc 
 
