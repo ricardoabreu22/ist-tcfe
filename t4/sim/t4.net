@@ -1,14 +1,14 @@
 T4 Laboratory Simulation Results
 
 .param Rin_value=100
-.param Ci_value=1m
+.param Ci_value=690u
 .param R1_value=80k
 .param R2_value=20k
-.param Rc_value=1k
-.param Re_value=100
-.param Cb_value=1m
-.param Rout_value=100
-.param Co_value=1u
+.param Rc_value=940
+.param Re_value=775
+.param Cb_value=4180u
+.param Rout_value=2335
+.param Co_value=2250u
 .param RL_value=8
 
 .csparam Rin_value={Rin_value}
