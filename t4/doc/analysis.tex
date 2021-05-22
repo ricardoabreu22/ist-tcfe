@@ -13,6 +13,7 @@ Finally, we will compute the frequency response Vo(f)/Vi(f).
 
 %The theoretical values will be obtained by applying Kirchhoff laws and the diode equations.
 %Considering the circuit of Figure~\ref{fig:circuit}, it is composed by a Voltage source, a transformer, an envelope detector and a voltage regulator.
+%--------------------------------------------------------------------------------------------
 \subsection{Gain Stage}
 In this subsection, we will analyze the Gain Stage circuit.
 
@@ -51,6 +52,20 @@ Considering the equations of the lecture 17 and the theoretical DC model studied
 \end{table}
 
 \subsubsection{Gain and Input and Output Impedances}
+Then, we will compute the gain and input and output impedances. In order to do that, we will  use the incremental circuit, whose diagram is represented in Figure-\ref{fig:gsincrem}.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{incrementalgs.pdf}
+\caption{Incremental Gain Stage Circuit}                         %%%%%%%%%%LEGENDA
+\label{fig:gsincrem}
+\end{figure}
+
+Starting by calculating the gain, after analyzing the circuit, we obtain the following equation: 
+\begin{equation}
+	A_v=\frac{v_o}{v_{in}}=-g_m(r_o||R_C)\frac{R_B||r_\pi}{R_B||r_\pi+R_{in}}
+\end{equation}
+
+Table~\ref{tab:avgs} presents the results.
 
 \begin{table}[H]
   \centering
@@ -63,6 +78,15 @@ Considering the equations of the lecture 17 and the theoretical DC model studied
   \label{tab:avgs}
 \end{table}
 
+In order to obtain the impedances, we used the following equations:
+\begin{equation}
+	Z_{I1}=R_1||R_2||r_\pi
+\end{equation}
+\begin{equation}
+	Z_{O1}=R_C||R_o
+\end{equation}
+
+The results are presented in Table~\ref{tab:zgs}
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
@@ -73,7 +97,7 @@ Considering the equations of the lecture 17 and the theoretical DC model studied
   \caption{Input and Output Impedances - Gain Stage}
   \label{tab:zgs}
 \end{table}
-
+%--------------------------------------------------------------------------------------------
 \subsection{Output Stage}
 
 \begin{table}[H]
