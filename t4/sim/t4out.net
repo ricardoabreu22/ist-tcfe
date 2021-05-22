@@ -9,7 +9,7 @@ Vin in 0 0
 Rin in in2 100
 
 * input coupling capacitor
-Ci in2 base 1m
+Ci in2 base 690u
 
 * bias circuit
 R1 vcc base 80k
@@ -17,19 +17,19 @@ R2 base 0 20k
 
 * gain stage
 Q1 coll base emit BC547A
-Rc vcc coll 1k
-Re emit 0 100
+Rc vcc coll 940
+Re emit 0 775
 
 * bypass capacitor
-Cb emit 0 1m
+Cb emit 0 4180u
 
 
 * output stage
 Q2 0 coll emit2 BC557A
-Rout emit2 vcc 100
+Rout emit2 vcc 2335
 
 * output coupling capacitor
-Co emit2 out 1u
+Co emit2 out 2250u
 
 * test voltage source
 Vout out 0 0 ac 1 sin(0 10m 1000)
@@ -41,7 +41,7 @@ Vout out 0 0 ac 1 sin(0 10m 1000)
 
 op
 
-ac dec 10 10 100MEG
+ac dec 10 0.1 100MEG
 
 let Zout=abs(v(out)[40]/vout#branch[40]/-1000)
 

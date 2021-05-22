@@ -71,7 +71,7 @@ hardcopy vo1.ps vdb(coll)
 
 
 * frequency analysis
-ac dec 10 10 100MEG
+ac dec 10 0.1 100MEG
 
 
 *plot vdb(coll)
