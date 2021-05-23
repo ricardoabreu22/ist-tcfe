@@ -201,9 +201,11 @@ The results are presented in Table~\ref{tab:osz}
     {\bf Name} & {\bf Value} \\ \hline   
     \input{../mat/OSZ_tab}
   \end{tabular}
-  \caption{Input and Output Impedances - Output Impedances}
+  \caption{Input and Output Impedances - Output Stage}
   \label{tab:osz}
 \end{table}
+
+To connect the two stages with without significant signal loss, it is important to ensure that the input impedance of the output impedance is greater than the output impedance of the gain stage.L ooking at Table~\ref{tab:zgs} ($Z_{O1}$) and Table~\ref{tab:osz} ($Z_{I2}$), we can conclude that this goal was achieved.
 
 \subsection{Final Outputs}
 For the final output, it is important to mention that was used another coupling capacitor between the Output stage and the load.
@@ -228,7 +230,7 @@ So, these outputs are in Table~\ref{tab:finaltab}.
 
 This way, the theoretical value of the lower cut-off frequency finally is given by:
 \begin{equation}
-	Lower-CO freq=1/R_{eqi}/C_i+1/R_{eqb}/C_b+1/R_{eqo}/C_o
+	Lower CO freq=1/R_{eqi}/C_i+1/R_{eqb}/C_b+1/R_{eqo}/C_o
 \end{equation}
 , where $R_{eqi}$, $R_{eqb}$ and $R_{eqo}$ are the equivalent resistances seen by each capacitor. This equation is an aproximation and represents the time constants method. Its result is presented in Table~\ref{tab:lc}.
 
@@ -239,8 +241,14 @@ This way, the theoretical value of the lower cut-off frequency finally is given 
     {\bf Name} & {\bf Value} \\ \hline   
     \input{../mat/LC_tab}
   \end{tabular}
-  \caption{Lower Cut-Off Frequency}
+  \caption{Cut-Off Frequencies}
   \label{tab:lc}
 \end{table}
 
+Finaly, in Figure~\ref{fig:gainoct}, is presented the the frequency response Vo(f)/Vi(f), for which we used the incremental circuit:
 
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{Gain.eps}
+\caption{Frequency response Vo(f)/Vi(f)}
+\label{fig:gainoct}
+\end{figure}
