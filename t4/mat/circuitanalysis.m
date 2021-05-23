@@ -48,7 +48,7 @@ VBEON=0.7;
 
  printf("GSBijector_TAB \n"); 
  printf("$V_{T}$ = %f V\n", VT);
- printf("$beta$ = %f \n", BFN); 
+ printf("${\\beta}$ = %f \n", BFN); 
  printf("$V_{A}$ = %f V\n", VAFN);
  printf("$V_{BEON}$ = %f V \n", VBEON);
  printf("GSBijector_END \n \n");
@@ -122,7 +122,7 @@ BFP = 227.3
 VAFP = 37.2
 VEBON = 0.7
  printf("OSBijector_TAB \n"); 
- printf("$beta$ = %f \n", BFP); 
+ printf("${\\beta}$ = %f \n", BFP); 
  printf("$V_{AFP}$ = %f V\n", VAFP);
  printf("$V_{BEON}$ = %f V \n", VEBON);
  printf("OSBijector_END \n \n");
