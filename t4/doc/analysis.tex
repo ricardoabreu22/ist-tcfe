@@ -17,7 +17,7 @@ Finally, we will compute the frequency response Vo(f)/Vi(f).
 \subsection{Gain Stage}
 In this subsection, we will analyze the Gain Stage circuit.
 
-In order to make this task easier, we used Thévenin's equivalent of bias circuit. Its diagram is represented in Figure~\ref{fig:gscircuit} as well as the BC547A model used in this assignment is shown in table~\ref{tab:bgs}.
+In order to make this task easier, we used Thévenin's equivalent of bias circuit. Its diagram is represented in Figure~\ref{fig:gscircuit} as well as the NPN BC547A model used in this assignment is shown in table~\ref{tab:bgs}.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{gainstage.pdf}
@@ -52,7 +52,7 @@ Considering the equations of the lecture 17 and the theoretical DC model studied
 \end{table}
 
 \subsubsection{Gain and Input and Output Impedances}
-Then, we will compute the gain and input and output impedances. In order to do that, we will  use the incremental circuit, whose diagram is represented in Figure-\ref{fig:gsincrem}.
+Then, we will compute the gain and input and output impedances. In order to do that, we will  use the incremental circuit, whose diagram is represented in Figure~\ref{fig:gsincrem}.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{incrementalgs.pdf}
@@ -60,10 +60,13 @@ Then, we will compute the gain and input and output impedances. In order to do t
 \label{fig:gsincrem}
 \end{figure}
 
-Starting by calculating the gain, after analyzing the circuit, we obtain the following equation: 
+Starting by calculating the gain, after analyzing the circuit, we obtain the following equation, with $R_E=0$: 
 \begin{equation}
 	A_v=\frac{v_o}{v_{in}}=-g_m(r_o||R_C)\frac{R_B||r_\pi}{R_B||r_\pi+R_{in}}
 \end{equation}
+
+Notice that the capacitor $C_b$ was used to bypass $R_E$. Otherwise, the gain will be lower and the lower cutoff frequency too high.
+This way, CE is an open-circuit for low frequency (DC) and a short-circuit fot higher frequencies (AC).
 
 Table~\ref{tab:avgs} presents the results.
 
@@ -99,6 +102,13 @@ The results are presented in Table~\ref{tab:zgs}
 \end{table}
 %--------------------------------------------------------------------------------------------
 \subsection{Output Stage}
+In this subsection, we will analyze the Output Stage circuit. Its diagram is represented in Figure~\ref{fig:oscircuit} as well as the PNP BC547A model used in this assignment is shown in table~\ref{tab:modelos}.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{outstage.pdf}
+\caption{Output Stage Circuit}                                     %%%%%%%%%%LEGENDA
+\label{fig:oscircuit}
+\end{figure}
 
 \begin{table}[H]
   \centering
@@ -112,6 +122,7 @@ The results are presented in Table~\ref{tab:zgs}
 \end{table}
 
 \subsubsection{Operating Point}
+Considering the equations of the lecture 17, we compute the OP. The table~\ref{tab:osop} presents the results obtained.
 
 \begin{table}[H]
   \centering
@@ -120,11 +131,28 @@ The results are presented in Table~\ref{tab:zgs}
     {\bf Name} & {\bf Value} \\ \hline   
     \input{../mat/OSOP_tab}
   \end{tabular}
-  \caption{Operating Point}
+  \caption{Operating Point - Output Stage}
   \label{tab:osop}
 \end{table}
 
+It is important to notice that output current $I_E$ is much stronger than in Gain Stage and that part pf this current will feed the Load.
+
 \subsubsection{Gain and Input and Output Impedances}
+Then, we will compute the gain and input and output impedances. In order to do that, we will  use the incremental circuit, whose diagram is represented in Figure~\ref{fig:osincrem}.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{incrementalos.pdf}
+\caption{Output Stage Circuit}                                     %%%%%%%%%%LEGENDA
+\label{fig:osincrem}
+\end{figure}
+
+Starting by calculating the gain, after analyzing the circuit, we obtain the following equation: 
+\begin{equation}
+	A_v=\frac{v_o}{v_{in}}=\frac{g_m}{g_\pi+g_E+g_o+g_m}
+\end{equation}
+, where $g_\pi$, $g_E$ and $g_o$ are the admittances of the respective resistors.
+
+Table~\ref{tab:osav} presents the results and, as predicted, we obtained almost unitary gain.
 
 \begin{table}[H]
   \centering
@@ -136,6 +164,16 @@ The results are presented in Table~\ref{tab:zgs}
   \caption{Gain}
   \label{tab:osav}
 \end{table}
+
+In order to obtain the impedances, we used the following equations:
+\begin{equation}
+	Z_{I2}=\frac{g_\pi+g_E+g_o+g_m}{g_\pi(g_\pi+g_E+g_o)}
+\end{equation}
+\begin{equation}
+	Z_{O2}=\frac{1}{g_\pi+g_E+g_o+g_m}
+\end{equation}
+
+The results are presented in Table~\ref{tab:osz}
 
 \begin{table}[H]
   \centering
@@ -149,6 +187,8 @@ The results are presented in Table~\ref{tab:zgs}
 \end{table}
 
 \subsection{Final}
+For the final output, it is important to mention that was used another coupling capacitor between the Output stage and the load.
+So, these outputs are in Table~\ref{tab:finaltab}.
 
 \begin{table}[H]
   \centering
