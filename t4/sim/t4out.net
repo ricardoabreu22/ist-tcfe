@@ -45,9 +45,9 @@ ac dec 10 0.1 100MEG
 
 let Zout=abs(v(out)[40]/vout#branch[40]/-1000)
 
-echo "output_TAB"
+echo "output_TAB2"
 print Zout
-echo "output_END"
+echo "output_END2"
 
 
 quit

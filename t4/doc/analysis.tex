@@ -252,3 +252,30 @@ Finaly, in Figure~\ref{fig:gainoct}, is presented the the frequency response Vo(
 \caption{Frequency response Vo(f)/Vi(f)}
 \label{fig:gainoct}
 \end{figure}
+
+\subsection{Comparison}
+
+Table~\ref{tab10:sim} presents the simulation results for the circuit under analysis.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf V or dB} \\ \hline
+    \input{../sim/sim_tab}
+  \end{tabular}
+  \begin{tabular}{|l|c|}
+    \hline
+    {\bf Impedance} & {\bf kOhms} \\ \hline
+    \input{../sim/input_tab}
+  \end{tabular}
+  \begin{tabular}{|l|c|}
+    \hline
+    {\bf Impedance} & {\bf kOhms} \\ \hline
+    \input{../sim/output_tab}
+  \end{tabular}
+    \caption{Simulation Results.}
+    \label{tab10:sim}
+\end{table}
+
+Comparing with the theoretical ones, we can see that they are slightly different, result of the fact that the theoretical model is an approximation and the transistors used in NGSpice were real. However, the results obtained are satisfatory!

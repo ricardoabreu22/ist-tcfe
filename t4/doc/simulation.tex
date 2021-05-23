@@ -47,7 +47,7 @@ ones.
   \begin{tabular}{|l|c|}
     \hline
     {\bf Impedance} & {\bf kOhms} \\ \hline
-    \input{../sim/output_tab}
+    \input{../sim/output_tab2}
   \end{tabular}
     \caption{Simulation Results.}
     \label{tab1:sim}
@@ -56,26 +56,8 @@ ones.
 It is important, in order to guarantee a high compatibility with AUDIO IN and speakers, that we obtain a very high input impedance ($Z_I$) and a very low output impedance ($Z_O$). Analysing our results, we notice that despite having a small input impedance (in result of a compromise we had to make to obtain a higher merit figure), the output impedance is very low, as desired.
 
 
-
-
 \subsection{Coupling Capacitors}
 In order to analyse this circuit, we need to understand the coupling capacitors influence. In this BJT amplifier circuit, there are two couplin capacitors, $C_{in}$ and $C_O$ - because their functions are similar, we will focus only on capacitor $C_{in}$. In the graphics below, we present the frequency response of the circuit, but with $C_{in}$ values drastically differents.
-
-\begin{figure}[h]
-\centering
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[scale=0.33]{Images/couplingsmall.ps}
-    \caption{Low $C_{in}$=1nF}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[scale=0.33]{Images/couplingbig.ps}
-    \caption{High $C_{in}$=1F}
-\end{subfigure}
-\caption{$C_{in}$ influence on the frequency response of the circuit.}
-\label{fig_coupling}
-\end{figure}
 
 As we can notice, the change in the capacitance of the coupling capacitor does not influence the value of the higher cut-off frequency. However, the increase of that value leads to a larger bandwidth, which is desired.
 
@@ -85,44 +67,11 @@ This happenas because, when $\omega \to 0$, $Z(C_{in}) \to \inf$ and, therefore,
 \subsection{Bypass Capacitor}
 Next, we must analyse the influence of the Bypass Capacitor $C_b$ on the circuit. In the graphics below, we present the frequency response of the circuit, but with $C_b$ values drastically differents.
 
-\begin{figure}[h]
-\centering
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[scale=0.33]{Images/bypasssmal.ps}
-    \caption{Low $C_E$=1nF}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[scale=0.33]{images/bypassbig.ps}
-    \caption{High $C_E$=1F}
-\end{subfigure}
-\caption{$C_E$ influence on the circuit.}
-\end{figure}
-
 By placing the bypass capacitor in parallel with $R_E$, this resistor becomes short for medium and high frequencies and because the amplifier's first stage gain is inversely dependent on this resistance, the bypass capacitor helps maximizing the gain for medium and high frequencies, which is desired.
 
 
 \subsection{Resistor $R_C$}
 Finally, we must understand the effect on the circuit of changing $R_C$. In the graphics below, we present the frequency response of the circuit, but with $R_C$ values drastically differents.
-
-
-\begin{figure}[h]
-\centering
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[scale=0.33]{images/rcsmall.ps}
-    \caption{Low $R_C$=10$\Omega$}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[scale=0.33]{images/rcbig.ps}
-    \caption{High $R_C$=10$k\Omega$}
-    \label{fig:RC_High}
-\end{subfigure}
-\caption{$R_C$ influence (on the Gain)}
-\end{figure}
-
 
 As we can notice, when we increase $R_C$, the gain increases and the passaband is antecipated. Note that for high values of resistance, a bizarre graphic is described. 
 
