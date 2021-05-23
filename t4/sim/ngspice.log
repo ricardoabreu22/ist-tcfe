@@ -1,0 +1,87 @@
+
+Circuit: t4 laboratory simulation results
+
+false = 0.000000e+00
+true = 1.000000e+00
+boltz = 1.380649e-23
+c = 2.997925e+08
+cb_value = 4.180000e-03
+ci_value = 6.900000e-04
+co_value = 2.250000e-03
+e = 2.718282e+00
+echarge = 1.602177e-19
+i = 0.000000e+00,1.000000e+00
+kelvin = -2.73150e+02
+no = 0.000000e+00
+pi = 3.141593e+00
+planck = 6.626070e-34
+r1_value = 8.000000e+04
+r2_value = 2.000000e+04
+rc_value = 9.400000e+02
+re_value = 7.750000e+02
+rin_value = 1.000000e+02
+rl_value = 8.000000e+00
+rout_value = 2.335000e+03
+yes = 1.000000e+00
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vcc                                         12
+in                                           0
+in2                                          0
+base                                   2.23254
+coll                                   10.1079
+emit                                   1.56976
+emit2                                  10.7259
+out                                          0
+vin#branch                                   0
+vcc#branch                          -0.0026806
+
+
+No. of Data Rows : 1008
+ERROR: (internal)  This operation is not defined for display type printf.
+Can't open viewport for graphics.
+
+The file "vo1.ps" may be printed on a postscript printer.
+vo1_FIG
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 91
+
+The file "vo1f.ps" may be printed on a postscript printer.
+vo1f_FIG
+
+The file "vo1f2.ps" may be printed on a postscript printer.
+vo1f2_FIG
+
+The file "vo2f.ps" may be printed on a postscript printer.
+vo2f_FIG
+
+The file "vo2f2.ps" may be printed on a postscript printer.
+vo2f2_FIG
+
+The file "gain.ps" may be printed on a postscript printer.
+gain_FIG
+
+The file "gain2.ps" may be printed on a postscript printer.
+gain2_FIG
+wanted              =  1.857656e+01 at=  3.162278e+03
+low                 =  3.202582e+00
+up                  =  3.038874e+06
+op_TAB
+low = 3.202582e+00
+cost = 7.224358e+03
+gain = 1.857653e+01
+bandwidth = 3.038871e+06
+merit = 2.439930e+03
+op_END
+input_TAB
+zin = 2.236262e+00
+input_END
+ngspice-31 done

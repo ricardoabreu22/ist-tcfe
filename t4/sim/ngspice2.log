@@ -1,0 +1,15 @@
+
+Circuit: .options savecurrents
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 91
+output_TAB
+zout = 5.105597e-02
+output_END
+ngspice-31 done

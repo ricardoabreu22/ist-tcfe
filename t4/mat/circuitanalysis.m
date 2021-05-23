@@ -187,12 +187,13 @@ band=f_H - f_L
  printf("LC_END \n \n");
  
 freq=logspace(1,8);
-
+RE1=775;
 for i=1:50
  wfreq=2*pi*freq(i)
 ZCS   = 1/(wfreq*j*CS);
 ZCB   = 1/(wfreq*j*Cb);
-ZEB = 1/(1/RE1 + 1/ZCB);
+BIMBUS=1/RE1 + 1/ZCB;
+ZEB = 1/BIMBUS;
 zpi2  = 1/gpi2;
 zo2   = 1/go2;
 ZE2 = 1/(1/zo2 + 1/RE2);
