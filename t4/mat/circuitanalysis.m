@@ -19,12 +19,12 @@ VCC=12;
 RS=100;
 RB1=80000;
 RB2=20000;
-RC1=1000;
-RE1=100;
-RE2 = 100
-CS=10*1e-3;
-Cb=10*1e-3;
-Co=10 *1e-6;
+RC1=940;
+RE1=775;
+RE2 = 2335;
+CS=690*1e-6;
+Cb=4180*1e-6;
+Co=2250 *1e-6;
 RL=8;
 Vinput=1;
 
@@ -181,7 +181,7 @@ f_L= (1/(3*CS)+ 1/((ZO+RL)*Co) +1/((ZI+RS)*Cb))/(2*pi);
 band=f_H - f_L
 
  printf("LC_TAB \n"); 
- printf("$Lower CO freq$ = %e dB\n", f_L);
+ printf("$Lower CO freq$ = %e Hz\n", f_L);
  printf("LC_END \n \n");
  
 freq=logspace(1,8);
