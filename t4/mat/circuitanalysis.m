@@ -10,9 +10,6 @@ clear all
 
 format long;
 
-f = 100*1e3;
-w = 2*pi*f;
-
 %--------------------------------Gain Stage-------------------------------------
 %-----Data-----
 VCC=12;
@@ -94,7 +91,7 @@ AVI_DB = 20*log10(abs(AV1))
 AV1simple =  - RSB/RS * gm1*RC1/(1+gm1*RE1)
 AVIsimple_DB = 20*log10(abs(AV1simple))
 
-RE1=100
+RE1=775
 ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
 ZX = ro1*((RSB+rpi1)*RE1/(RSB+rpi1+RE1))/(1/(1/ro1+1/(rpi1+RSB)+1/RE1+gm1*rpi1/(rpi1+RSB)))
 ZX = ro1*(   1/RE1+1/(rpi1+RSB)+1/ro1+gm1*rpi1/(rpi1+RSB)  )/(   1/RE1+1/(rpi1+RSB) ) 
@@ -176,8 +173,13 @@ ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
  printf("Final_END \n \n");
  
 %------------------------------Teoria Ponto 3------------------------------------
+f = 100*1e3;
+w = 2*pi*f;
+
 f_H=f;
-f_L= (1/(3*CS)+ 1/((ZO+RL)*Co) +1/((ZI+RS)*Cb))/(2*pi);
+%f_L= (1/(3*CS)+ 1/((ZO+RL)*Co) +1/((ZI+RS)*Cb))/(2*pi);
+f_L= (1/((ZI+RS)*CS) + 1/(((rpi1+RSB)/(rpi1*gm1))*Cb) + 1/((ZO+RL)*Co))/(2*pi)
+
 band=f_H - f_L
 
  printf("LC_TAB \n"); 
