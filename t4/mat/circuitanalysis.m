@@ -179,7 +179,7 @@ ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
 f_H=f;
 WAH=(rpi1+RSB)/(rpi1*gm1);
 WAH2=(775*WAH)/(WAH+775);
-f_L= (1/(WAH2*Cb)+ 1/((ZO+RL)*Co) +1/((ZI+RS)*CS))/(2*pi);
+f_L= (1/((ZI+RS)*CS) + 1/(WAH2*Cb)+ 1/((ZO+RL)*Co))/(2*pi);
 band=f_H - f_L
 
  printf("LC_TAB \n"); 
@@ -221,4 +221,3 @@ ylabel("Gain (dB)");
 grid on;
 print (fig1, "Gain", "-depsc");
 close(fig1)
-
