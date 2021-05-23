@@ -10,6 +10,9 @@ clear all
 
 format long;
 
+f = 100*1e3;
+w = 2*pi*f;
+
 %--------------------------------Gain Stage-------------------------------------
 %-----Data-----
 VCC=12;
@@ -173,13 +176,10 @@ ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
  printf("Final_END \n \n");
  
 %------------------------------Teoria Ponto 3------------------------------------
-f = 100*1e3;
-w = 2*pi*f;
-
 f_H=f;
-%f_L= (1/(3*CS)+ 1/((ZO+RL)*Co) +1/((ZI+RS)*Cb))/(2*pi);
-f_L= (1/((ZI+RS)*CS) + 1/(((rpi1+RSB)/(rpi1*gm1))*Cb) + 1/((ZO+RL)*Co))/(2*pi)
-
+WAH=(rpi1+RSB)/(rpi1*gm1);
+WAH2=(775*WAH)/(WAH+775);
+f_L= (1/((ZI+RS)*CS) + 1/(WAH2*Cb)+ 1/((ZO+RL)*Co))/(2*pi);
 band=f_H - f_L
 
  printf("LC_TAB \n"); 
@@ -220,4 +220,3 @@ ylabel("Gain (dB)");
 grid on;
 print (fig1, "Gain", "-depsc");
 close(fig1)
-
