@@ -89,10 +89,10 @@ meas AC up WHEN vdb(out) = ref CROSS=LAST
 let lowcutoff=low
 let highcutoff=up
 
-let VCE=v(coll)-v(emit)
-let VBE=v(base)-v(emit)
-let VEB=v(emit2)-0
-let VEC=v(emit2)-v(coll)
+let VCE=v(coll)[40]-v(emit)[40]
+let VBE=v(base)[40]-v(emit)[40]
+let VEB=v(emit2)[40]-0
+let VEC=v(emit2)[40]-v(coll)[40]
 
 echo "npn_TAB"
 print VCE

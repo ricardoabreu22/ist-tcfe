@@ -37,7 +37,7 @@ ones.
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf V or dB} \\ \hline
-    \input{../sim/pnp_tab}
+    \input{../sim/sim_tab}
   \end{tabular}
   \begin{tabular}{|l|c|}
     \hline
@@ -49,7 +49,7 @@ ones.
     {\bf Impedance} & {\bf kOhms} \\ \hline
     \input{../sim/output_tab}
   \end{tabular}
-    \caption{Simulation Input Impedance}
+    \caption{Simulation Results.}
     \label{tab1:sim}
 \end{table}
 
@@ -153,6 +153,8 @@ We are now ready to make a global comparison of the two approaches, with the cho
 In this case, the comparison of the shape can only be done on the left side, since we don't have the theoretical higher cut-off frequency. 
 
 Comparing both figures, we can conclude that the overall shape of the graphs is similar, noting that the theoretical curve can be thought of as assymptotical approach. Furthermore, we can see that the Gain and the lower cut-off frequency are quite similar - they may differ slightly because not only the theoretical result is an approximation, as said previously, but the transistors used in the NGSPice were real ones.
+
+Note that the logaritmic scale of the frequency begins in $-1$, not $1$ as requested initially because, by trying to improve the figure of merit, we ended up having a circuit whose low cutoff frequency happened at a frequency lower that the smaller value of the scale.
 
 
 \subsection{Merit}
