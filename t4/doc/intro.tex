@@ -1,26 +1,21 @@
 \section{Introduction}
 \label{sec:introduction}
 % state the learning objective 
-The objective of this laboratory assignment is to simulate a AC/DC converter circuit, which output voltage must be ideally 12 Volts. 
-This converter must have an envelope detector and a voltage regulator. We are free to choose the architecture of both circuits, 
-however we must consider the cost of the components in the circuit, the ripple voltage and the voltage difference between the output 
-voltage and 12 Volts.
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{amp.pdf}
+\caption{Audio Amplifier Circuit}                                     
+\label{fig:amp}
+\end{figure}
+The objective of this laboratory assignment is to simulate an Audio Amplifier Circuit as shown in Figure~\ref{fig:amp}. 
 
-After multiple simulations, we have decided to simulate the following circuit. The envelope detector is composed by
-a full rectifier brigde and a resistor $R_1$ in parallel with a capacitor $C$, while the voltage regulator has a resistor $R_2$ in
-series with 20 diodes. The values of the components are exhibited in the table below. We have also taken advantage of the fact that,
-in this assignment, the number of turns $n$ of the transformer will not influence the merit of our work. Therefore, as you can see below,
-we used an unusual value for $n$.
-
+This way, we should choose the architecture of the Gain and Output amplifier stages, however, we must consider the cost of the components in the circuit. Its diagram is shown in Figure~\ref{fig:circuit}.
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{circuit.pdf}
-\caption{AC/DC converter circuit.}                                     
+\caption{Audio Amplifier Circuit Diagram}                                     
 \label{fig:circuit}
 \end{figure}
-
-GAIN STAGE
-Here we have a npn transistor.
-
+In this laboratory, we use two different modles of Phillips BJT's Transistors: BC547A, a NPN transistor used in Gain Stage, and BC557A, a PNP Transistor used in Output Stage.
+The values of the components are exhibited in the table below.
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
@@ -28,10 +23,9 @@ Here we have a npn transistor.
     {\bf Name} & {\bf Value} \\ \hline   
     \input{../mat/GSData_tab}
   \end{tabular}
-  \caption{Gain Stage Data}
+  \caption{Components Values}
   \label{tab:datags}
 \end{table}
-
 
 In Section~\ref{sec:analysis}, a theoretical analysis of the circuit, 
 performed on Octave, is presented. In Section~\ref{sec:simulation}, the 

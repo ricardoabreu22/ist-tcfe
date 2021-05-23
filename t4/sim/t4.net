@@ -68,6 +68,7 @@ print all
 tran 1e-5 1e-2
 plot v(coll)
 hardcopy vo1.ps vdb(coll)
+echo vo1_FIG
 
 
 * frequency analysis
@@ -76,18 +77,24 @@ ac dec 10 0.1 100MEG
 
 *plot vdb(coll)
 hardcopy vo1f.ps vdb(coll)
+echo vo1f_FIG
 *plot vp(coll)
 hardcopy vo1f2.ps vp(coll)
+echo vo1f2_FIG
 
 *plot vdb(out)
 hardcopy vo2f.ps vdb(out)
+echo vo2f_FIG
 *plot vph(out)
 hardcopy vo2f2.ps vp(out)
+echo vo2f2_FIG
 
 
 let gain = db(v(out)[40]/v(in)[40])
 hardcopy gain.ps db(v(out)/v(in))
+echo gain_FIG
 hardcopy gain2.ps ph(v(out)/v(in))
+echo gain2_FIG
 
 
 meas AC wanted MAX vdb(out)

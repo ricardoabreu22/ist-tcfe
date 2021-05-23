@@ -3,7 +3,6 @@
 In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
 theoretically. We will begin by analyzing the Gain Stage circuit and, after that, the Output Stage circuit.
 %in order to predict their outputs. 
-
 Thus, we will start by computing the Operating Point using the theoretical DC
 model studied and comparing it to Ngspice’s OP.
 
@@ -15,16 +14,15 @@ Finally, we will compute the frequency response Vo(f)/Vi(f).
 %Considering the circuit of Figure~\ref{fig:circuit}, it is composed by a Voltage source, a transformer, an envelope detector and a voltage regulator.
 %--------------------------------------------------------------------------------------------
 \subsection{Gain Stage}
-In this subsection, we will analyze the Gain Stage circuit.
+In this subsection, we will analyze the Gain Stage circuit. Its function is to ensure a high input voltage so that the input signal is not degraded or distorted throughout the circuit. It also has a high gain associated, being responsible for amplifying the signal.
 
-In order to make this task easier, we used Thévenin's equivalent of bias circuit. Its diagram is represented in Figure~\ref{fig:gscircuit} as well as the NPN BC547A model used in this assignment is shown in table~\ref{tab:bgs}.
+In order to make the analysis task easier, we used Thévenin's equivalent of bias circuit. Its diagram is represented in Figure~\ref{fig:gscircuit} as well as the NPN BC547A model used in this assignment is shown in table~\ref{tab:bgs}.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{gainstage.pdf}
 \caption{Gain Stage Circuit}                                     %%%%%%%%%%LEGENDA
 \label{fig:gscircuit}
 \end{figure}
-
 
 \begin{table}[H]
   \centering
@@ -36,6 +34,8 @@ In order to make this task easier, we used Thévenin's equivalent of bias circui
   \caption{BC547A model}
   \label{tab:bgs}
 \end{table}
+
+In gain stage circuit, it is important to mention that capacitor $C_I$ is a coupling capacitor, acting as a DC Block, and $C_b$ is a bypass capacitor.
 
 \subsubsection{Operating Point}
 Considering the equations of the lecture 17 and the theoretical DC model studied , we compute the OP. The table~\ref{tab:opgs} presents the results obtained.
@@ -60,13 +60,12 @@ Then, we will compute the gain and input and output impedances. In order to do t
 \label{fig:gsincrem}
 \end{figure}
 
-Starting by calculating the gain, after analyzing the circuit, we obtain the following equation, with $R_E=0$: 
+Starting by calculating the gain, after analyzing the circuit, we obtain the following equation: 
 \begin{equation}
 	A_v=\frac{v_o}{v_{in}}=-g_m(r_o||R_C)\frac{R_B||r_\pi}{R_B||r_\pi+R_{in}}
 \end{equation}
 
-Notice that the capacitor $C_b$ was used to bypass $R_E$. Otherwise, the gain will be lower and the lower cutoff frequency too high.
-This way, CE is an open-circuit for low frequency (DC) and a short-circuit fot higher frequencies (AC).
+Notice that the capacitor $C_b$ was used to bypass $R_E$. Otherwise, the gain will be lower and the lower cutoff frequency too high. This way, CE is an open-circuit for low frequency (DC) and a short-circuit fot higher frequencies (AC).
 
 Table~\ref{tab:avgs} presents the results.
 
@@ -83,7 +82,7 @@ Table~\ref{tab:avgs} presents the results.
 
 In order to obtain the impedances, we used the following equations:
 \begin{equation}
-	Z_{I1}=R_1||R_2||r_\pi
+	Z_{I1}=R_B1||R_B2||r_\pi
 \end{equation}
 \begin{equation}
 	Z_{O1}=R_C||R_o
@@ -100,9 +99,13 @@ The results are presented in Table~\ref{tab:zgs}
   \caption{Input and Output Impedances - Gain Stage}
   \label{tab:zgs}
 \end{table}
+
+Notice that, in this section, we have made the approximation $R_E1 \approx 0$, because it is assumed the capacitors are shor-circuited, i.e. high frequency analysis.
+
+Finally, we should pay attention to the values of the output impedance of gain stage. Its values are high when compared with the load. That's why we need the Output Stage.
 %--------------------------------------------------------------------------------------------
 \subsection{Output Stage}
-In this subsection, we will analyze the Output Stage circuit. Its diagram is represented in Figure~\ref{fig:oscircuit} as well as the PNP BC547A model used in this assignment is shown in table~\ref{tab:modelos}.
+In this subsection, we will analyze the Output Stage circuit, wich presents a lower output impedance. Its diagram is represented in Figure~\ref{fig:oscircuit} as well as the PNP BC547A model used in this assignment is shown in table~\ref{tab:modelos}.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{outstage.pdf}
@@ -135,7 +138,7 @@ Considering the equations of the lecture 17, we compute the OP. The table~\ref{t
   \label{tab:osop}
 \end{table}
 
-It is important to notice that output current $I_E$ is much stronger than in Gain Stage and that part pf this current will feed the Load.
+It is important to notice that output current $I_E$ is much stronger than in Gain Stage and that part of this current will feed the Load.
 
 \subsubsection{Gain and Input and Output Impedances}
 Then, we will compute the gain and input and output impedances. In order to do that, we will  use the incremental circuit, whose diagram is represented in Figure~\ref{fig:osincrem}.
@@ -161,7 +164,7 @@ Table~\ref{tab:osav} presents the results and, as predicted, we obtained almost 
     {\bf Name} & {\bf Value} \\ \hline   
     \input{../mat/OSAV_tab}
   \end{tabular}
-  \caption{Gain}
+  \caption{Gain - Output Stage}
   \label{tab:osav}
 \end{table}
 
@@ -182,7 +185,7 @@ The results are presented in Table~\ref{tab:osz}
     {\bf Name} & {\bf Value} \\ \hline   
     \input{../mat/OSZ_tab}
   \end{tabular}
-  \caption{Input and Output Impedances}
+  \caption{Input and Output Impedances - Output Impedances}
   \label{tab:osz}
 \end{table}
 
@@ -200,4 +203,18 @@ So, these outputs are in Table~\ref{tab:finaltab}.
   \caption{Output Values}
   \label{tab:finaltab}
 \end{table}
+
+This way, the theoretical value of the lower cut-off frequency finally is presented in Table~\ref{tab:lc}.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/LC_tab}
+  \end{tabular}
+  \caption{Lower Cut-Off Frequency}
+  \label{tab:lc}
+\end{table}
+
 

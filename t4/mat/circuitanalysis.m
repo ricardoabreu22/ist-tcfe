@@ -21,21 +21,24 @@ RB1=80000;
 RB2=20000;
 RC1=1000;
 RE1=100;
+RE2 = 100
 CS=10*1e-3;
 Cb=10*1e-3;
 Co=10 *1e-6;
 RL=8;
 Vinput=1;
 
- printf("GSData_TAB \n"); 
- printf("$V_{CC}$ = %e V\n", VCC);
- printf("$R_{in}$ = %e Ohm\n", RS); 
- printf("$R_{1}$ = %e Ohm \n", RB1);
- printf("$R_{2}$ = %e Ohm \n", RB2);
- printf("$R_{c}$ = %e Ohm \n", RC1);
- printf("$R_{e}$ = %e Ohm \n", RE1);
- printf("$C_{in}$ = %e F \n", CS);
+ printf("GSData_TAB \n");
+ printf("$R_{S}$ = %e Ohm\n", RS); 
+ printf("$R_{B1}$ = %e Ohm \n", RB1);
+ printf("$R_{B2}$ = %e Ohm \n", RB2);
+ printf("$R_{C1}$ = %e Ohm \n", RC1);
+ printf("$R_{E1}$ = %e Ohm \n", RE1);
+ printf("$R_{E2}$ = %e Ohm \n", RE2);
+ printf("$R_{L}$ = %e Ohm \n", RL);
+ printf("$C_{I}$ = %e F \n", CS);
  printf("$C_{b}$ = %e F \n", Cb);
+ printf("$C_{O}$ = %e F \n", Co);
  printf("GSData_END \n \n");
 
 VT=25e-3;           
@@ -103,7 +106,7 @@ ZO1 = 1/(1/ro1+1/RC1)
 
  printf("GSAV_TAB \n"); 
  printf("$A_{V1}$ = %e dB\n", AVI_DB);
- printf("$A_{VIsimple}$ = %e dB\n", AVIsimple_DB); 
+ %printf("$A_{VIsimple}$ = %e dB\n", AVIsimple_DB); 
  printf("GSAV_END \n \n"); 
  
  printf("GSZ_TAB \n"); 
@@ -117,7 +120,6 @@ ZO1 = 1/(1/ro1+1/RC1)
 %-----Data-----
 BFP = 227.3
 VAFP = 37.2
-RE2 = 100
 VEBON = 0.7
  printf("OSBijector_TAB \n"); 
  printf("$beta$ = %f \n", BFP); 
@@ -178,6 +180,10 @@ f_H=f;
 f_L= (1/(3*CS)+ 1/((ZO+RL)*Co) +1/((ZI+RS)*Cb))/(2*pi);
 band=f_H - f_L
 
+ printf("LC_TAB \n"); 
+ printf("$Lower CO freq$ = %e dB\n", f_L);
+ printf("LC_END \n \n");
+ 
 freq=logspace(1,8);
 
 for i=1:50
