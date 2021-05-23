@@ -217,7 +217,7 @@ GaindB(i) = 20*log10(abs(Gain(7)*RL/Vinput))
 endfor
 
 fig1=figure(1)
-plot(log10(freq),GaindB,"r");
+semilogx(freq,GaindB,"r");
 xlabel("log(f) (Hz)");
 ylabel("Gain (dB)");
 grid on;
