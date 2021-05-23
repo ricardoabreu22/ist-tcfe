@@ -183,7 +183,9 @@ f_L= (1/((ZI+RS)*CS) + 1/(WAH2*Cb)+ 1/((ZO+RL)*Co))/(2*pi);
 band=f_H - f_L
 
  printf("LC_TAB \n"); 
- printf("$Lower CO freq$ = %e Hz\n", f_L);
+ printf("Higher CO freq = %e Hz\n", f_H);
+ printf("Lower CO freq = %e Hz\n", f_L);
+ printf("Bandwidth = %e Hz\n", band);
  printf("LC_END \n \n");
  
 freq=logspace(1,8);
