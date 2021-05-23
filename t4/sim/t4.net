@@ -64,37 +64,20 @@ RL out 0 8 {RL_value}
 
 print all
 
-* time analysis
-tran 1e-5 1e-2
-plot v(coll)
-hardcopy vo1.ps vdb(coll)
-echo vo1_FIG
-
-
 * frequency analysis
 ac dec 10 0.1 100MEG
 
-
-*plot vdb(coll)
-hardcopy vo1f.ps vdb(coll)
-echo vo1f_FIG
-*plot vp(coll)
-hardcopy vo1f2.ps vp(coll)
-echo vo1f2_FIG
-
 *plot vdb(out)
-hardcopy vo2f.ps vdb(out)
-echo vo2f_FIG
-*plot vph(out)
-hardcopy vo2f2.ps vp(out)
-echo vo2f2_FIG
+hardcopy out.ps vdb(out)
+echo out_FIG
+
 
 
 let gain = db(v(out)[40]/v(in)[40])
+*print v(out)[40]/v(in)[40]
 hardcopy gain.ps db(v(out)/v(in))
 echo gain_FIG
-hardcopy gain2.ps ph(v(out)/v(in))
-echo gain2_FIG
+
 
 
 meas AC wanted MAX vdb(out)
@@ -103,22 +86,57 @@ let ref=wanted-3
 meas AC low WHEN vdb(out) = ref
 meas AC up WHEN vdb(out) = ref CROSS=LAST
 
+let lowcutoff=low
+let highcutoff=up
+
+let VCE=v(coll)-v(emit)
+let VBE=v(base)-v(emit)
+let VEB=v(emit2)-0
+let VEC=v(emit2)-v(coll)
+
+echo "npn_TAB"
+print VCE
+print VBE
+if (VCE>VBE)
+echo "V(CE) greater than V(BE) = Yes"
+else
+echo "V(CE) greater than V(BE) = No"
+endif
+echo "npn_END"
+
+echo "pnp_TAB"
+print VEC
+print VEB
+if (VEC>VEB)
+echo "V(EC) greater than V(EB) = Yes"
+else
+echo "V(EC) greater than V(EB) = No"
+endif
+echo "pnp_END"
+
 
 let resist=(Rin_value+R1_value+R2_value+Rc_value+Re_value+Rout_value+RL_value)*0.001
 let capac=(Ci_value+Cb_value+Co_value)*1000000
 let trans=2
-let bandwidth=up-low
+let bandwidth=highcutoff-lowcutoff
 let cost=resist+capac+trans*0.1
 let merit=((gain*bandwidth)/(cost*low))
 
 
-echo "op_TAB"
-print low
+echo "sim_TAB"
+print lowcutoff
+print highcutoff
+print gain
+print bandwidth
+echo "sim_END"
+
+echo "merit_TAB"
+print lowcutoff
 print cost
 print gain
 print bandwidth
 print merit
-echo "op_END"
+echo "merit_END"
 
 
 *input impedance in kohm
