@@ -1,3 +1,22 @@
+T5 Laboratory Simulation Script
+
+.param R1_value=1k
+.param R2_value=10k
+.param R3_value=100k
+.param R4a_value=1k
+.param R4b_value=1k
+.param C1_value=220n
+.param C2_value=220n
+
+
+.csparam R1_value={R1_value}
+.csparam R2_value={R2_value}
+.csparam R3_value={R3_value}
+.csparam R4a_value={R4a_value}
+.csparam R4b_value={R4b_value}
+.csparam C1_value={C1_value}
+.csparam C2_value={C2_value}
+
 *-----------------------------------------------------------------------------
 *
 * To use a subcircuit, the name must begin with 'X'.  For example:
@@ -49,41 +68,48 @@
 
 .options savecurrents
 
-Vcc vcc 0 5.0
-Vee vee 0 -5.0
-Vin in 0 0 ac 1.0 sin(0 10m 1k)
+Vcc vcc 0 10.0
+Vee vee 0 -10.0
+Vin in 0 0
 
-X1 0 inv_in vcc vee out uA741
+X1 1 2 vcc vee 3 uA741
 
-R1 in inv_in 1000
-R2 inv_in out 10000
 
-* load
-RL out 0 8
+C1 in 1 {C1_value}
+
+R1 1 0 {R1_value}
+R3 2 3 {R3_value}
+R4a 2 0 {R4a_value}
+R4b 2 0 {R4b_value}
+
+
+R2 3 out {R2_value}
+C2 out 0 {C2_value}
+
+* test voltage source
+Vout out 0 0 ac 1 sin(0 10m 1000)
 
 .op
 .end
 
 .control
 
+op
+
 print all
 
-* time analysis
-tran 1e-5 1e-2
-plot v(out)
-hardcopy vo1.ps vdb(out)
 
-
-* frequency analysis
 ac dec 10 10 100MEG
-plot vdb(out)
-plot vp(out)
-hardcopy vo1f.ps vdb(out)
 
-*input impedance in kohm
-print v(in)[40]/R1[i]/1000
 
-*need a different setup to measure output impedance
+let Zout=abs(v(out)[1]/vout#branch[1]/(-1000))
 
+*input impedance in ohm
+echo "Zout_TAB"
+print Zout
+echo "Zout_END"
+
+
+quit
 .endc 
-
+.end
