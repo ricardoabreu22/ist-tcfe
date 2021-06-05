@@ -1,0 +1,281 @@
+\section{Theoretical Analysis}
+\label{sec:analysis}
+In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed
+theoretically. We will begin by analyzing the Gain Stage circuit and, after that, the Output Stage circuit.
+%in order to predict their outputs. 
+Thus, we will start by computing the Operating Point using the theoretical DC
+model studied and comparing it to Ngspice’s OP.
+
+Then, we will compute the gain and input and output impedances separately for the 2 stages. 
+
+Finally, we will compute the frequency response Vo(f)/Vi(f).
+
+%The theoretical values will be obtained by applying Kirchhoff laws and the diode equations.
+%Considering the circuit of Figure~\ref{fig:circuit}, it is composed by a Voltage source, a transformer, an envelope detector and a voltage regulator.
+%--------------------------------------------------------------------------------------------
+\subsection{Gain Stage}
+In this subsection, we will analyze the Gain Stage circuit. Its function is to ensure a high input voltage so that the input signal is not degraded or distorted throughout the circuit. It also has a high gain associated, being responsible for amplifying the signal.
+
+In order to make the analysis task easier, we used Thévenin's equivalent of bias circuit. Its diagram is represented in Figure~\ref{fig:gscircuit} as well as the NPN BC547A model used in this assignment is shown in table~\ref{tab:bgs}.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{gainstage.pdf}
+\caption{Gain Stage Circuit}                                     %%%%%%%%%%LEGENDA
+\label{fig:gscircuit}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/GSBijector_tab}
+  \end{tabular}
+  \caption{BC547A model}
+  \label{tab:bgs}
+\end{table}
+
+In gain stage circuit, it is important to mention that capacitor $C_I$ is a coupling capacitor, acting as a DC Block, and $C_b$ is a bypass capacitor.
+
+\subsubsection{Operating Point}
+Considering the equations of the lecture 17 and the theoretical DC model studied , we compute the OP. The table~\ref{tab:opgs} presents the results obtained.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/GSOP_tab}
+  \end{tabular}
+  \caption{OP - Gain Stage}
+  \label{tab:opgs}
+\end{table}
+
+\subsubsection{Gain and Input and Output Impedances}
+Then, we will compute the gain and input and output impedances. In order to do that, we will  use the incremental circuit, whose diagram is represented in Figure~\ref{fig:gsincrem}.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{incrementalgs.pdf}
+\caption{Incremental Gain Stage Circuit}                         %%%%%%%%%%LEGENDA
+\label{fig:gsincrem}
+\end{figure}
+
+The incremental parameters are given by:
+\begin{equation}
+	g_m=\frac{I_{C1}}{V_{T}}
+\end{equation}
+\begin{equation}
+	r_\pi=\frac{\beta}{g_m}
+\end{equation}
+\begin{equation}
+	r_o=\frac{V_{A}}{I_{C1}}
+\end{equation}
+
+Starting by calculating the gain, after analyzing the circuit, we obtain the following equation: 
+\begin{equation}
+	A_v=\frac{v_o}{v_{in}}=-g_m(r_o||R_C)\frac{R_B||r_\pi}{R_B||r_\pi+R_{in}}
+\end{equation}
+
+Notice that the capacitor $C_b$ was used to bypass $R_E$. Otherwise, the gain will be lower and the lower cutoff frequency too high. This way, CE is an open-circuit for low frequency (DC) and a short-circuit fot higher frequencies (AC).
+
+Table~\ref{tab:avgs} presents the results.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/GSAV_tab}
+  \end{tabular}
+  \caption{Gain - Gain Stage}
+  \label{tab:avgs}
+\end{table}
+
+In order to obtain the impedances, we used the following equations:
+\begin{equation}
+	Z_{I1}=R_B1||R_B2||r_\pi
+\end{equation}
+\begin{equation}
+	Z_{O1}=R_C||R_o
+\end{equation}
+
+The results are presented in Table~\ref{tab:zgs}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/GSZ_tab}
+  \end{tabular}
+  \caption{Input and Output Impedances - Gain Stage}
+  \label{tab:zgs}
+\end{table}
+
+Notice that, in this section, we have made the approximation $R_E1 \approx 0$, because it is assumed the capacitors are shor-circuited, i.e. high frequency analysis.
+
+Finally, we should pay attention to the values of the output impedance of gain stage. Its values are high when compared with the load. That's why we need the Output Stage.
+%--------------------------------------------------------------------------------------------
+\subsection{Output Stage}
+In this subsection, we will analyze the Output Stage circuit, wich presents a lower output impedance. Its diagram is represented in Figure~\ref{fig:oscircuit} as well as the PNP BC547A model used in this assignment is shown in table~\ref{tab:modelos}.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{outstage.pdf}
+\caption{Output Stage Circuit}                                     %%%%%%%%%%LEGENDA
+\label{fig:oscircuit}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/OSBijector_tab}
+  \end{tabular}
+  \caption{BC557A model}
+  \label{tab:modelos}
+\end{table}
+
+\subsubsection{Operating Point}
+Considering the equations of the lecture 17, we compute the OP. The table~\ref{tab:osop} presents the results obtained.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/OSOP_tab}
+  \end{tabular}
+  \caption{Operating Point - Output Stage}
+  \label{tab:osop}
+\end{table}
+
+It is important to notice that output current $I_E$ is much stronger than in Gain Stage and that part of this current will feed the Load.
+
+\subsubsection{Gain and Input and Output Impedances}
+Then, we will compute the gain and input and output impedances. In order to do that, we will  use the incremental circuit, whose diagram is represented in Figure~\ref{fig:osincrem}.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{incrementalos.pdf}
+\caption{Output Stage Circuit}                                     %%%%%%%%%%LEGENDA
+\label{fig:osincrem}
+\end{figure}
+
+The incremental parameter is given by:
+\begin{equation}
+	g_m=\frac{I_{C2}}{V_{T}}
+\end{equation}
+
+Starting by calculating the gain, after analyzing the circuit, we obtain the following equation: 
+\begin{equation}
+	A_v=\frac{v_o}{v_{in}}=\frac{g_m}{g_\pi+g_E+g_o+g_m}
+\end{equation}
+, where $g_\pi$, $g_E$ and $g_o$ are the admittances of the respective resistors.
+
+Table~\ref{tab:osav} presents the results and, as predicted, we obtained almost unitary gain.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/OSAV_tab}
+  \end{tabular}
+  \caption{Gain - Output Stage}
+  \label{tab:osav}
+\end{table}
+
+In order to obtain the impedances, we used the following equations:
+\begin{equation}
+	Z_{I2}=\frac{g_\pi+g_E+g_o+g_m}{g_\pi(g_\pi+g_E+g_o)}
+\end{equation}
+\begin{equation}
+	Z_{O2}=\frac{1}{g_\pi+g_E+g_o+g_m}
+\end{equation}
+
+The results are presented in Table~\ref{tab:osz}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/OSZ_tab}
+  \end{tabular}
+  \caption{Input and Output Impedances - Output Stage}
+  \label{tab:osz}
+\end{table}
+
+To connect the two stages with without significant signal loss, it is important to ensure that the input impedance of the output impedance is greater than the output impedance of the gain stage.L ooking at Table~\ref{tab:zgs} ($Z_{O1}$) and Table~\ref{tab:osz} ($Z_{I2}$), we can conclude that this goal was achieved.
+
+\subsection{Final Outputs}
+For the final output, it is important to mention that was used another coupling capacitor between the Output stage and the load.
+Final Gain and Output Impedance are given, respectively, by:
+\begin{equation}
+	AV=(gB+gm2/gpi2*gB)/(gB+ge2+go2+gm2/gpi2*gB)*AV1
+\end{equation}
+\begin{equation}
+	Z_O=1/(go2+gm2/gpi2*gB+ge2+gB)
+\end{equation}
+So, these outputs are in Table~\ref{tab:finaltab}.
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/Final_tab}
+  \end{tabular}
+  \caption{Output Values}
+  \label{tab:finaltab}
+\end{table}
+
+This way, the theoretical value of the lower cut-off frequency finally is given by:
+\begin{equation}
+	Lower CO freq=1/R_{eqi}/C_i+1/R_{eqb}/C_b+1/R_{eqo}/C_o
+\end{equation}
+, where $R_{eqi}$, $R_{eqb}$ and $R_{eqo}$ are the equivalent resistances seen by each capacitor. This equation is an aproximation and represents the time constants method. Its result is presented in Table~\ref{tab:lc}.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/LC_tab}
+  \end{tabular}
+  \caption{Cut-Off Frequencies}
+  \label{tab:lc}
+\end{table}
+
+Finaly, in Figure~\ref{fig:gainoct}, is presented the the frequency response Vo(f)/Vi(f), for which we used the incremental circuit:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{Gain.eps}
+\caption{Frequency response Vo(f)/Vi(f)}
+\label{fig:gainoct}
+\end{figure}
+
+\subsection{Comparison}
+
+Table~\ref{tab10:sim} presents the simulation results for the circuit under analysis.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf V or dB} \\ \hline
+    \input{../sim/sim_tab}
+  \end{tabular}
+  \begin{tabular}{|l|c|}
+    \hline
+    {\bf Impedance} & {\bf kOhms} \\ \hline
+    \input{../sim/input_tab}
+  \end{tabular}
+  \begin{tabular}{|l|c|}
+    \hline
+    {\bf Impedance} & {\bf kOhms} \\ \hline
+    \input{../sim/output_tab2}
+  \end{tabular}
+    \caption{Simulation Results.}
+    \label{tab10:sim}
+\end{table}
+
+Comparing with the theoretical ones, we can see that they are slightly different, result of the fact that the theoretical model is an approximation and the transistors used in NGSpice were real. However, the results obtained are satisfatory!
