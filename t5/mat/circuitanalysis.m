@@ -10,27 +10,28 @@ clear all
 
 format long;
 
-%----Data---
-C1=220e-6;
-C2=220e-6;
-R1=1e3;
-R2=10e3;
+%-----Data-----
+C1=220e-9;
+C2=(220e-9*1e-6)/(220e-9+1e-6);
+R1=909;
+R2=1e3;
 R3=100e3;
 R4a=1e3;
-R4b=1e3;
+R4b=10e3;
 
  printf("Data_TAB \n");
- printf("$R_{1}$ = %f Ohm\n", R1); 
- printf("$R_{2}$ = %f Ohm \n", R2);
- printf("$R_{3}$ = %f Ohm \n", R3);
- printf("$R_{4a}$ = %f Ohm \n", R4a);
+ printf("$R_{1}$ = %e Ohm\n", R1); 
+ printf("$R_{2}$ = %e Ohm \n", R2);
+ printf("$R_{3}$ = %e Ohm \n", R3);
+ printf("$R_{4a}$ = %e Ohm \n", R4a);
  printf("$R_{4b}$ = %e Ohm \n", R4b);
  printf("$C_{1}$ = %e F \n", C1);
  printf("$C_{2}$ = %e F \n", C2);
  printf("Data_END \n \n");
 %------------
-%--Replace R4a and R4b by an equivalent R4
-R4=1/((1/R4a)+(1/Rab));
+%--Replace R4a and R4b by an equivalent R4-
+R4=1/((1/R4a)+(1/R4b));
+%R4=R4a
 %------------------------------------------
 
 %----1. Gain, Zi, Zout---------------------
@@ -41,13 +42,28 @@ wO = sqrt(wL*wH);
 ZC1=1/(j*C1*wO);
 ZC2=1/(j*C2*wO);
 
+
 T_1=(R1*C1*j*wO/(1+R1*C1*j*wO))*(1+R3/R4)*(1/(1+R2*C2*j*wO));
-T_1dB=20*log10(abs(T_1));
+T_1dB=20*log10(abs(T_1))
 wCdB=wO/(2*pi);
 
-Zin=R1+ZC1;
-Zout=R2*ZC2/(R2+ZC2);
-%----2. --------------------------------------
+Zin=R1+ZC1
+Zout=R2*ZC2/(R2+ZC2)
+
+ printf("Freq_TAB \n");
+ printf("$w_{L}$ = %e rad/s \n", wL);
+ printf("$w_{H}$ = %e rad/s \n", wH);
+ printf("$w_{O}$ = %e rad/s \n", wO);
+ printf("$f_{O}$ = %e Hz \n", wCdB);
+ printf("Freq_END \n \n");
+ 
+ printf("Results1_TAB \n");
+ printf("$Gain$ = %e dB \n", T_1dB);
+ printf("$Z_{in}$ = %e + j%e Ohm \n", real(Zin), imag(Zin));
+ printf("$Z_{out}$ = %e + j%eOhm \n", real(Zout), imag(Zout));
+ printf("Results1_END \n \n");
+
+%----2.--------------------------------------
 f=logspace(1,8,70);
 s=j*2*pi*f;
 for n=1:length(s)
@@ -69,4 +85,3 @@ title("Gain/Frequency response");
 print(figure2,"gain_response.eps","-depsc");
 
 %--------------------------------------------
-

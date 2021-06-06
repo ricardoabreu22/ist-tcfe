@@ -1,10 +1,10 @@
 T5 Laboratory Simulation Script
 
 .param R1_value=1k
-.param R2_value=10k
+.param R2_value=1k
 .param R3_value=100k
 .param R4a_value=1k
-.param R4b_value=1k
+.param R4b_value=10k
 .param C1_value=220n
 .param C2_value=220n
 

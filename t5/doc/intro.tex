@@ -1,27 +1,22 @@
 \section{Introduction}
 \label{sec:introduction}
 % state the learning objective 
-\begin{figure}[H] \centering
-\includegraphics[width=0.8\linewidth]{amp.pdf}
-\caption{Audio Amplifier Circuit}                                     
-\label{fig:amp}
-\end{figure}
-The objective of this laboratory assignment is to simulate an Audio Amplifier Circuit as shown in Figure~\ref{fig:amp}. 
+The objective of this laboratory assignment is to simulate a Band Pass Filter using OPAMP as shown in Figure~\ref{fig:circuit}. 
 
 This way, we should choose the architecture of the Gain and Output amplifier stages, however, we must consider the cost of the components in the circuit. Its diagram is shown in Figure~\ref{fig:circuit}.
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{circuit.pdf}
-\caption{Audio Amplifier Circuit Diagram}                                     
+\caption{Band Pass Filter Circuit}                                     
 \label{fig:circuit}
 \end{figure}
-In this laboratory, we use two different modles of Phillips BJT's Transistors: BC547A, a NPN transistor used in Gain Stage, and BC557A, a PNP Transistor used in Output Stage.
+This circuit is composed by 5 resistors, 2 capacitors and an OPAMP.
 The values of the components are exhibited in the table below.
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
      \hline    
     {\bf Name} & {\bf Value} \\ \hline   
-    \input{../mat/GSData_tab}
+    \input{../mat/Data_tab}
   \end{tabular}
   \caption{Components Values}
   \label{tab:datags}
@@ -32,5 +27,4 @@ performed on Octave, is presented. In Section~\ref{sec:simulation}, the
 circuit is analysed by simulation, using NGSpice, and the results are compared to 
 the theoretical results obtained in Section~\ref{sec:analysis}. The conclusions 
 of this study are outlined in Section~\ref{sec:conclusion}.
-
 
