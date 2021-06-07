@@ -12,12 +12,20 @@ format long;
 
 %-----Data-----
 C1=220e-9;
-C2=(220e-9*1e-6)/(220e-9+1e-6);
-R1=909;
+C2a=220e-9;
+C2b=220e-9;
+R1a=1e3;
+R1b=10e3;
 R2=1e3;
 R3=100e3;
 R4a=1e3;
 R4b=10e3;
+%------------
+%--Replace R_a and R_b by an equivalent R_---
+C2=(C2a*C2b)/(C2a+C2b);
+R1=(R1a*R1b)/(R1a+R1b);
+R4=(R4a*R4b)/(R4a+R4b);
+%R4=R4a
 
  printf("Data_TAB \n");
  printf("$R_{1}$ = %e Ohm\n", R1); 
@@ -28,10 +36,6 @@ R4b=10e3;
  printf("$C_{1}$ = %e F \n", C1);
  printf("$C_{2}$ = %e F \n", C2);
  printf("Data_END \n \n");
-%------------
-%--Replace R4a and R4b by an equivalent R4-
-R4=1/((1/R4a)+(1/R4b));
-%R4=R4a
 %------------------------------------------
 
 %----1. Gain, Zi, Zout---------------------
@@ -49,6 +53,8 @@ wCdB=wO/(2*pi);
 
 Zin=R1+ZC1
 Zout=R2*ZC2/(R2+ZC2)
+Zinmod=sqrt(real(Zin)^2+imag(Zin)^2)
+Zoutmod=sqrt(real(Zout)^2+imag(Zout)^2)
 
  printf("Freq_TAB \n");
  printf("$w_{L}$ = %e rad/s \n", wL);
@@ -61,6 +67,8 @@ Zout=R2*ZC2/(R2+ZC2)
  printf("$Gain$ = %e dB \n", T_1dB);
  printf("$Z_{in}$ = %e + j%e Ohm \n", real(Zin), imag(Zin));
  printf("$Z_{out}$ = %e + j%eOhm \n", real(Zout), imag(Zout));
+ printf("$|Z_{in}|$ = %e Ohm \n", Zinmod);
+ printf("$|Z_{out}|$ = %e Ohm \n", Zoutmod);
  printf("Results1_END \n \n");
 
 %----2.--------------------------------------
