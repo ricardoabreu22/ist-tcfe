@@ -1,15 +1,17 @@
 \section{Introduction}
 \label{sec:introduction}
 % state the learning objective 
-The objective of this laboratory assignment is to simulate a Band Pass Filter using OPAMP as shown in Figure~\ref{fig:circuit}. 
+The objective of this laboratory assignment is to simulate a Band Pass Filter using OPAMP as shown in Figure~\ref{fig:circuit}.
+We should have a central frequency of 1KHz and a 40 dB gain at the central frequency. 
 
-This way, we should choose the architecture of the Gain and Output amplifier stages, however, we must consider the cost of the components in the circuit. Its diagram is shown in Figure~\ref{fig:circuit}.
+This way, we should choose its the architecture, considering the limitations imposed as well as the cost of the components in the circuit.
+Its diagram is shown in Figure~\ref{fig:circuit}.
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{circuit.pdf}
 \caption{Band Pass Filter Circuit}                                     
 \label{fig:circuit}
 \end{figure}
-This circuit is composed by 5 resistors, 2 capacitors and an OPAMP.
+This circuit is composed by 6 resistors, 3 capacitors and a 741 OPAMP.
 The values of the components are exhibited in the table below.
 \begin{table}[H]
   \centering
@@ -21,6 +23,7 @@ The values of the components are exhibited in the table below.
   \caption{Components Values}
   \label{tab:datags}
 \end{table}
+Notice that some components have been simplified by its equivalent ($R_1$, $R_4$ and $C_2$).
 
 In Section~\ref{sec:analysis}, a theoretical analysis of the circuit, 
 performed on Octave, is presented. In Section~\ref{sec:simulation}, the 

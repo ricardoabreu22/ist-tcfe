@@ -1,4 +1,4 @@
-\section{Simulation Analysis}
+\section{Simulation Analysis and Comparison with Theoretical Values}
 \label{sec:simulation}
 
 \subsection{Frequency Analysis}
@@ -63,4 +63,75 @@ Finally, Table~\ref{tab:merit} shows the values obtained for the gain and centra
 
 As one can notice, we achieved a very low merit value. However, if we analyse the restrictions imposed on the uses of certain components and the results for the gain and the central frequency, which are quite close to the reference values, we conclude that, despite the low merit value, we achieved a very efficient circuit whose quality would degrade significantly if we changed randomly the values of the components to achieve the highest merit figure possibly.
 
+\subsection{Side by Side Comparison}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../sim/Zin_tab}
+  \end{tabular}
+  \begin{tabular}{|l|c|}
+    \hline
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/Results1_tab}
+  \end{tabular}
+  \begin{tabular}{|l|c|}
+    \hline
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../sim/Zout_tab}
+  \end{tabular}
+    \caption{Comparison of Input and Output Impendances (Left - Simulation Values, Right - Theoretical Values)}
+    \label{tab:comp1}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../sim/merit_tab}
+  \end{tabular}
+  \begin{tabular}{|l|c|}
+    \hline
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/Results2_tab}
+  \end{tabular}
+    \caption{Comparison of Gain (Left - Simulation Values, Right - Theoretical Values)}
+    \label{tab:comp2}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.5\textwidth}
+    \centering
+    \vspace{2.8 cm}
+    \includegraphics[scale=0.4]{phase_response.eps}
+    \caption{Theoretical Phase Response}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[scale=0.33]{phase.pdf}
+    \caption{Simulation Phase Response}
+\end{subfigure}
+\caption{Phase Response}
+\label{fig:comp1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.5\textwidth}
+    \centering
+    \vspace{2.8 cm}
+    \includegraphics[scale=0.4]{gain_response.eps}
+    \caption{Theoretical Phase Response}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[scale=0.33]{gain.pdf}
+    \caption{Simulation Phase Response}
+\end{subfigure}
+\caption{Gain Response}
+\label{fig:comp2}
+\end{figure}
 

@@ -28,12 +28,17 @@ R4=(R4a*R4b)/(R4a+R4b);
 %R4=R4a
 
  printf("Data_TAB \n");
- printf("$R_{1}$ = %e Ohm\n", R1); 
+ printf("$R_{1a}$ = %e Ohm \n", R1a);
+ printf("$R_{1b}$ = %e Ohm \n", R1b);
+ printf("$R_{1}$ = %e Ohm\n", R1);
  printf("$R_{2}$ = %e Ohm \n", R2);
  printf("$R_{3}$ = %e Ohm \n", R3);
  printf("$R_{4a}$ = %e Ohm \n", R4a);
  printf("$R_{4b}$ = %e Ohm \n", R4b);
+ printf("$R_{4}$ = %e Ohm \n", R4);
  printf("$C_{1}$ = %e F \n", C1);
+ printf("$C_{2a}$ = %e Ohm \n", C2a);
+ printf("$C_{2b}$ = %e Ohm \n", C2b);
  printf("$C_{2}$ = %e F \n", C2);
  printf("Data_END \n \n");
 %------------------------------------------
@@ -64,12 +69,15 @@ Zoutmod=sqrt(real(Zout)^2+imag(Zout)^2)
  printf("Freq_END \n \n");
  
  printf("Results1_TAB \n");
- printf("$Gain$ = %e dB \n", T_1dB);
  printf("$Z_{in}$ = %e + j%e Ohm \n", real(Zin), imag(Zin));
  printf("$Z_{out}$ = %e + j%eOhm \n", real(Zout), imag(Zout));
  printf("$|Z_{in}|$ = %e Ohm \n", Zinmod);
  printf("$|Z_{out}|$ = %e Ohm \n", Zoutmod);
  printf("Results1_END \n \n");
+ 
+ printf("Results2_TAB \n");
+ printf("$Gain$ = %e dB \n", T_1dB);
+ printf("Results2_END \n \n");
 
 %----2.--------------------------------------
 f=logspace(1,8,70);
