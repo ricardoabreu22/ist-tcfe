@@ -1,117 +1,66 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
+\subsection{Frequency Analysis}
+\subsubsection{Magnitude Response}
+
+Figure~\ref{fig:gain} shows the frequency magnitude response of the circuit, for the voltage gain, which is expressed in dB. Comparing to the theoretical graphic, we notice that the curves are very similar. We only notice the differences by taking a closer look to both curves, and see that the maximum voltage gain is not the same for the theoretical and simulated results. Both results approach very well the reference value, 40dB, and the differences between these two results might rely on the fact that NGSpice uses a real OPAMP model.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{gain.pdf}
+\caption{Magnitude response for the voltage gain $V_{out}/V_{in}$, in dB.}
+\label{fig:gain}
+\end{figure}
+
+
+\subsubsection{Phase Response}
+
+
+Figure~\ref{fig:phase} shows the frequency phase response of the circuit, for the voltage gain, which is expressed in degrees. Comparing to the theoretical graphic, we notice that the curves are very similar. We only notice the differences by taking a closer look to both curves, and see that the maximum voltage gain is not the same for the theoretical and simulated results. Both results approach very well the reference value, 40dB, and the differences between these two results might rely on the fact that NGSpice uses a real OPAMP model.
+
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{phase.pdf}
+\caption{Phase response for the voltage gain $V_{out}/V_{in}$, in degrees.}
+\label{fig:phase}
+\end{figure}
+
+
+
+\subsection{Simulation Results}
+
+Table~\ref{tab1:impedance} shows the simulated results, using NGSPICE, for the input and output impedances, at the central frequency. Remind that the values on the right are the theoretical ones obtained by Octave, which are reproduced in this section to help compare them to the simulated resuls. Comparing both the values, we conclude that the results are very close, some differences resulting on the fact that, on NGSpice, we used an aproximate value of the central frequency to calculate the impedances and because in this simulating tool, it considers the components real (the OPAMP, most importantly).
+
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Voltages} & {\bf V} \\ \hline
+    {\bf Input impedance} & {\bf Ohms} \\ \hline
     \input{../sim/Zin_tab}
   \end{tabular}
-  \caption{NPN Voltages and F.A.R confirmation}
-  \label{tab1:npn}
-\end{table}
-
-
-\begin{table}[H]
-  \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Voltages} & {\bf V} \\ \hline
+    {\bf Output impedance} & {\bf Ohms} \\ \hline
     \input{../sim/Zout_tab}
   \end{tabular}
-  \caption{NPN Voltages and F.A.R confirmation}
-  \label{tab2:npn}
+  \caption{Input and Output impedances}
+  \label{tab1:impedance}
 \end{table}
 
+Finally, Table~\ref{tab:merit} shows the values obtained for the gain and central frequency of the circuit under analysis. The table shows also the merit result and the values used for the calculation of the merit figure, which are the cost, the central frequency deviation (which should be ideally 1kHz) and the linearly voltage gain deviation (which should be ideally 100).
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Voltages} & {\bf V} \\ \hline
+    {\bf Name} & {\bf Values} \\ \hline
     \input{../sim/merit_tab}
   \end{tabular}
-  \caption{NPN Voltages and F.A.R confirmation}
-  \label{tab3:npn}
+  \caption{Values for the calculation of the Merit.}
+  \label{tab:merit}
 \end{table}
 
-\begin{figure}[H] \centering
- \includegraphics[width=0.6\linewidth]{gain.pdf}
- \caption{Phase Frequency Response}                         %%%%%%%%%%LEGENDA
-\label{fig:phase}
-\end{figure}
-
-\begin{figure}[H] \centering
- \includegraphics[width=0.6\linewidth]{phase.pdf}
- \caption{Phase Frequency Response}                         %%%%%%%%%%LEGENDA
-\label{fig:phase}
-\end{figure}
-
-%\begin{table}[H]
-%  \centering
-%  \begin{tabular}{|l|r|}
-%    \hline    
-%    {\bf Name} & {\bf V or dB} \\ \hline
-%    \input{../sim/sim_tab}
-%  \end{tabular}
-%  \begin{tabular}{|l|c|}
-%    \hline
-%    {\bf Impedance} & {\bf kOhms} \\ \hline
-%    \input{../sim/input_tab}
-%  \end{tabular}
-%  \begin{tabular}{|l|c|}
-%    \hline
-%    {\bf Impedance} & {\bf kOhms} \\ \hline
-%    \input{../sim/output_tab2}
-%  \end{tabular}
-%    \caption{Simulation Results.}
-%    \label{tab1:sim}
-%\end{table}
-
-It is important, in order to guarantee a high compatibility with AUDIO IN and speakers, that we obtain a very high input impedance ($Z_I$) and a very low output impedance ($Z_O$). Analysing our results, we notice that despite having a small input impedance (in result of a compromise we had to make to obtain a higher merit figure), the output impedance is very low, as desired.
-
-
-\subsection{Coupling Capacitors}
-In order to analyse this circuit, we need to understand the coupling capacitors influence. In this BJT amplifier circuit, there are two couplin capacitors, $C_{in}$ and $C_O$ - because their functions are similar, we will focus only on capacitor $C_{in}$. In the graphics below, we present the frequency response of the circuit, but with $C_{in}$ values drastically differents.
-
-As we can notice, the change in the capacitance of the coupling capacitor does not influence the value of the higher cut-off frequency. However, the increase of that value leads to a larger bandwidth, which is desired.
-\subsection{Gain.}
-%\pagebreak
-%\vspace{-2.5cm}
-
-%\begin{figure}[h]
-%\centering
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%    \vspace{2.8 cm}
-%    \includegraphics[scale=0.4]{Gain.eps}
-%    \caption{Theoretical Gain}
-%\end{subfigure}%
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%    \includegraphics[scale=0.33]{gain.pdf}
-%    \caption{Simulation Gain}
-%\end{subfigure}
-%\caption{Gain}
-%\label{fig:Gain}
-%\end{figure}
-
-
-\subsection{Merit}
-To end this section, we outline below the 4 values that influence the merit figure and the respective value of the merit.
-
-%\begin{table}[H]
-%  \centering
-%  \begin{tabular}{|l|r|}
-%    \hline    
-%    {\bf Name} & {\bf Values} \\ \hline
-%    \input{../sim/merit_tab}
-%  \end{tabular}
-%  \caption{Values for the calculation of the Merit.}
-%\end{table}
-
-As we can see, we obtained a very high merit value. However, that value was obtained at the cost of degrading the quality of the circuit (for example, the low input impedance.)
+As one can notice, we achieved a very low merit value. However, if we analyse the restrictions imposed on the uses of certain components and the results for the gain and the central frequency, which are quite close to the reference values, we conclude that, despite the low merit value, we achieved a very efficient circuit whose quality would degrade significantly if we changed randomly the values of the components to achieve the highest merit figure possibly.
 
 

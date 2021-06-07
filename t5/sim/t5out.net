@@ -1,15 +1,17 @@
 T5 Laboratory Simulation Script
 
-.param R1_value=1k
-.param R2_value=10k
+.param R1a_value=1k
+.param R1b_value=10k
+.param R2_value=1k
 .param R3_value=100k
 .param R4a_value=1k
-.param R4b_value=1k
+.param R4b_value=10k
 .param C1_value=220n
-.param C2_value=220n
+*dois condensadores em série
+.param C2_value=110n
 
-
-.csparam R1_value={R1_value}
+.csparam R1a_value={R1a_value}
+.csparam R1_bvalue={R1b_value}
 .csparam R2_value={R2_value}
 .csparam R3_value={R3_value}
 .csparam R4a_value={R4a_value}
@@ -77,7 +79,8 @@ X1 1 2 vcc vee 3 uA741
 
 C1 in 1 {C1_value}
 
-R1 1 0 {R1_value}
+R1a 1 0 {R1a_value}
+R1b 1 0 {R1b_value}
 R3 2 3 {R3_value}
 R4a 2 0 {R4a_value}
 R4b 2 0 {R4b_value}
@@ -102,7 +105,7 @@ print all
 ac dec 10 10 100MEG
 
 
-let Zout=abs(v(out)[1]/vout#branch[1]/(-1000))
+let Zout=abs(v(out)[20]/vout#branch[20])
 
 *input impedance in ohm
 echo "Zout_TAB"
