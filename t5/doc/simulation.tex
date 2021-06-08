@@ -4,24 +4,47 @@
 \subsection{Frequency Analysis}
 \subsubsection{Magnitude Response}
 
-Figure~\ref{fig:gain} shows the frequency magnitude response of the circuit, for the voltage gain, which is expressed in dB. Comparing to the theoretical graphic, we notice that the curves are very similar. We only notice the differences by taking a closer look to both curves, and see that the maximum voltage gain is not the same for the theoretical and simulated results. Both results approach very well the reference value, 40dB, and the differences between these two results might rely on the fact that NGSpice uses a real OPAMP model.
+Figure~\ref{fig:gain} shows the frequency magnitude response of the circuit, for the voltage gain, which is expressed in dB. Comparing to the theoretical graphic, which is on the right, we notice that the curves are very similar. We only notice the differences by taking a closer look to both curves, and see that the maximum voltage gain is not the same for the theoretical and simulated results. Both results approach very well the reference value, 40dB, and the differences between these two results might rely on the fact that NGSpice uses a real OPAMP model.
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.4\linewidth]{gain.pdf}
-\caption{Magnitude response for the voltage gain $V_{out}/V_{in}$, in dB.}
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+    \centering
+    \vspace{2.8 cm}
+    \includegraphics[scale=0.4]{gain_response.eps}
+    \caption{Theoretical Phase Response}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[scale=0.33]{gain.pdf}
+    \caption{Simulation Phase Response}
+\end{subfigure}
+\caption{Gain Response}
 \label{fig:gain}
 \end{figure}
+
 
 
 \subsubsection{Phase Response}
 
 
-Figure~\ref{fig:phase} shows the frequency phase response of the circuit, for the voltage gain, which is expressed in degrees. Comparing to the theoretical graphic, we notice that the curves are very similar. We only notice the differences by taking a closer look to both curves, and see that the maximum voltage gain is not the same for the theoretical and simulated results. Both results approach very well the reference value, 40dB, and the differences between these two results might rely on the fact that NGSpice uses a real OPAMP model.
+Figure~\ref{fig:phase} shows the frequency phase response of the circuit, for the voltage gain, which is expressed in degrees. Comparing to the theoretical graphic, which is on the right, we might consider that the curves are very different, since we see a sudden jump of phase, in the simulated graphic. However, if we take a closer look, we notice that the simulated graphic shows a jump of +180 degrees in the phase in order to fit the scale. If we ignore that necessary jump, we conclude that the theoretical curve only has 2 poles, while the simulated one has 4. That can be explained by the fact that NGSPice simulates a real OPAMP model, while Octave performs a theoretical analysis of the circuit, with an idealized OPAMP model.
 
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.4\linewidth]{phase.pdf}
-\caption{Phase response for the voltage gain $V_{out}/V_{in}$, in degrees.}
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+    \centering
+    \vspace{2.8 cm}
+    \includegraphics[scale=0.4]{phase_response.eps}
+    \caption{Theoretical Phase Response}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[scale=0.33]{phase.pdf}
+    \caption{Simulation Phase Response}
+\end{subfigure}
+\caption{Phase Response}
 \label{fig:phase}
 \end{figure}
 
@@ -33,41 +56,9 @@ Table~\ref{tab1:impedance} shows the simulated results, using NGSPICE, for the i
 
 
 \begin{table}[H]
-  \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Input impedance} & {\bf Ohms} \\ \hline
-    \input{../sim/Zin_tab}
-  \end{tabular}
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Output impedance} & {\bf Ohms} \\ \hline
-    \input{../sim/Zout_tab}
-  \end{tabular}
-  \caption{Input and Output impedances}
-  \label{tab1:impedance}
-\end{table}
-
-Finally, Table~\ref{tab:merit} shows the values obtained for the gain and central frequency of the circuit under analysis. The table shows also the merit result and the values used for the calculation of the merit figure, which are the cost, the central frequency deviation (which should be ideally 1kHz) and the linearly voltage gain deviation (which should be ideally 100).
-
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Values} \\ \hline
-    \input{../sim/merit_tab}
-  \end{tabular}
-  \caption{Values for the calculation of the Merit.}
-  \label{tab:merit}
-\end{table}
-
-As one can notice, we achieved a very low merit value. However, if we analyse the restrictions imposed on the uses of certain components and the results for the gain and the central frequency, which are quite close to the reference values, we conclude that, despite the low merit value, we achieved a very efficient circuit whose quality would degrade significantly if we changed randomly the values of the components to achieve the highest merit figure possibly.
-
-\subsection{Side by Side Comparison}
-\begin{table}[H]
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value} \\ \hline
+    {\bf Name} & {\bf Ohm} \\ \hline
     \input{../sim/Zin_tab}
   \end{tabular}
   \begin{tabular}{|l|c|}
@@ -77,12 +68,14 @@ As one can notice, we achieved a very low merit value. However, if we analyse th
   \end{tabular}
   \begin{tabular}{|l|c|}
     \hline
-    {\bf Name} & {\bf Value} \\ \hline
+    {\bf Name} & {\bf Ohm} \\ \hline
     \input{../sim/Zout_tab}
   \end{tabular}
     \caption{Comparison of Input and Output Impendances (Left - Simulation Values, Right - Theoretical Values)}
-    \label{tab:comp1}
+    \label{tab1:impedance}
 \end{table}
+
+Finally, Table~\ref{tab:merit} shows the values obtained for the gain and central frequency of the circuit under analysis. The table shows also the merit result and the values used for the calculation of the merit figure, which are the cost, the central frequency deviation (which should be ideally 1kHz) and the linearly voltage gain deviation (which should be ideally 100).
 
 \begin{table}[H]
     \begin{tabular}{|l|c|}
@@ -101,40 +94,9 @@ As one can notice, we achieved a very low merit value. However, if we analyse th
     \input{../mat/Freq_tab}
   \end{tabular}
     \caption{Comparison of Gain (Left - Theoretical Values, Right - Simulation Values)}
-    \label{tab:comp2}
+    \label{tab:merit}
 \end{table}
 
-\begin{figure}[H]
-\centering
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \vspace{2.8 cm}
-    \includegraphics[scale=0.4]{phase_response.eps}
-    \caption{Theoretical Phase Response}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[scale=0.33]{phase.pdf}
-    \caption{Simulation Phase Response}
-\end{subfigure}
-\caption{Phase Response}
-\label{fig:comp1}
-\end{figure}
+Comparing to the theoretical results, we can see that both results aproach closely the reference values. However, we can notice some slight differences on the gain and the central frequency results, which can be explained by the fact that NGSPice simulates a real OPAMP model, while Octave performs a theoretical analysis of the circuit.
 
-\begin{figure}[H]
-\centering
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \vspace{2.8 cm}
-    \includegraphics[scale=0.4]{gain_response.eps}
-    \caption{Theoretical Phase Response}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[scale=0.33]{gain.pdf}
-    \caption{Simulation Phase Response}
-\end{subfigure}
-\caption{Gain Response}
-\label{fig:comp2}
-\end{figure}
-
+Lastly, as one can notice, we achieved a very low merit value. However, if we analyse the restrictions imposed on the uses of certain components and the results for the gain and the central frequency, which are quite close to the reference values, we conclude that, despite the low merit value, we achieved a very efficient circuit whose quality would degrade significantly if we changed randomly the values of the components to achieve the highest merit figure possibly. 
