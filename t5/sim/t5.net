@@ -137,7 +137,7 @@ let Cfreq = sqrt(low*up)
 let gainfreq = abs(v(out)[20]/v(in)[20])
 let gaindb = db(v(out)[20]/v(in)[20])
 
-let resist=(R1a_value+R1b_value+R2_value+R3_value+R4a_value+R4b_value)*0.001
+let resist=(R1a_value+R1b_value+R2_value+2*R3_value+R4a_value+R4b_value)*0.001
 let capac=(C1_value+4*C2_value)*1000000
 let opampcost=1.3323e+04
 let cost=resist+capac+opampcost
