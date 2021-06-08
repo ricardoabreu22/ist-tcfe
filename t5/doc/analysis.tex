@@ -3,7 +3,7 @@
 In this section, the circuit shown in Figure~\ref{fig:circuit} is analysed theoretically.
 It is important to notice that the purpose is to build a band pass filter circuit using an OPAMP.
 This way, the considered circuit has a high pass filter, a signal amplifier (OPAMP) and a low pass filter in series,
-where the capacitor C1 and the resistor R1 act as a high pass filter, while capacitor C2 and resistor R2 function as a low pass filter.
+where the capacitor C1 and the resistor R1 act as a high pass filter, while the capacitor C2 and the resistor R2 function as a low pass filter.
 
 Thus, We will begin by computing the gain, input and output impedances at the central frequency.
 Then, we will compute the frequency response Vo(f)/Vi(f) , using the incremental circuit, 
@@ -37,18 +37,19 @@ Their values are presented in the table below:
   \label{tab:freq}
 \end{table}
 
+As we can see, our central frequency is very close to 1KHz, as requested.
+
 Now we can determine the gain at central frequency, wich is given by the following equation:
 \begin{equation}
 	T_{w_O}=\frac{R_1\cdot C_1 \cdot jw_O}{1+R_1*C_1*jw_O}\cdot(1+ \frac{R_3}{R_4}) \cdot \frac{1}{1+R_2 \cdot C_2\cdot jw_O}
 \end{equation}
-, where $R_4$ is the $R_{4a}$ and $R_{4b}$ equivalent resistor.
 
 As well as $Z_{in}$ and $Z_{out}$, at the central frequency, are determined by:
 \begin{equation}
-	Z_{in}=\frac{R_1\cdot C_1 \cdot jw_O}{1+R_1*C_1*jw_O}\cdot(1+ \frac{R_3}{R_4}) \cdot \frac{1}{1+R_2 \cdot C_2\cdot jw_O}
+	Z_{in}=R_1+\frac{1}{jw_O*C_1}
 \end{equation}
 \begin{equation}
-	Z_{out}=R_1+\frac{1}{jw_O*C_1}
+	Z_{out}=R_2 \cdot \frac{\frac{1}{jw_O*C_2}}{R2+\frac{1}{jw_O*C_2}}
 \end{equation}
 
 The results are shown in tables~\ref{tab:results1} and~\ref{tab:results2}:
@@ -72,11 +73,31 @@ The results are shown in tables~\ref{tab:results1} and~\ref{tab:results2}:
   \caption{Gain at central frequency}
   \label{tab:results2}
 \end{table}
+,where $AV_{HP}$, $AV_{OPAMP}$, $AV_{LP}$, $AV$ correspond to the high pass, OPAMP, low pass and final gain.
 
+It is important to remember that the input impedance should be higher as possible to have a minimum input signal degradation,
+and output impedance should be close to null. This target became hard to achieve because of the limitations imposed on the circuit components.
+That's why our output impedance presents a too high value.
+
+As also requested, we can observe that the circuit has a gain close to 40 dB.
+
+Table~\ref{tab:results3} presents the same gain results, but considering, this time, a central frequency of 1KHz.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+     \hline    
+    {\bf Name} & {\bf Value} \\ \hline   
+    \input{../mat/Results3_tab}
+  \end{tabular}
+  \caption{Gain at 1KHz}
+  \label{tab:results3}
+\end{table}
+As we can notice, these results are very similar to the ones in the previous table.
 \subsection{Frequency response Vo(f)/Vi(f)}
 Now, considering the transfer function $T(s)$, it is given by:
 \begin{equation}
-	T(s)=\frac{V_out(s)}{V_in(s)}=1+\frac{Z_{in}(s)}{Z_{out}(s)}=\frac{R_1\cdot C_1 \cdot s}{1+R_1*C_1*s}\cdot(1+ \frac{R_3}{R_4}) \cdot \frac{1}{1+R_2 \cdot C_2\cdot s}
+	T(s)=\frac{V_{out}(s)}{V_{in}(s)}=1+\frac{Z_{in}(s)}{Z_{out}(s)}=\frac{R_1\cdot C_1 \cdot s}{1+R_1*C_1*s}\cdot(1+ \frac{R_3}{R_4}) \cdot \frac{1}{1+R_2 \cdot C_2\cdot s}
 \end{equation}
 , where $\frac{R_1\cdot C_1 \cdot s}{1+R_1*C_1*s}$, $1+\frac{R_3}{R_4}$ and $\frac{1}{1+R_2\cdot C_2\cdot s}$ represent
 the gain at high pass filter, OP-AMP and low pass filter, respectively.

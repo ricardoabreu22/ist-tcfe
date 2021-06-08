@@ -1,0 +1,86 @@
+
+Circuit: t5 laboratory simulation script
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+@c.x1.c1[i] = 0.000000e+00
+@c.x1.c2[i] = 0.000000e+00
+@c1[i] = 0.000000e+00
+@c2[i] = 0.000000e+00
+@d.x1.dc[id] = -8.99873e-12
+@d.x1.de[id] = -9.00287e-12
+@d.x1.dln[id] = -4.00029e-11
+@d.x1.dlp[id] = -3.99987e-11
+@d.x1.dp[id] = -2.00008e-11
+@g.x1.ga[i] = -3.62055e-09
+@g.x1.gcm[i] = -3.62280e-09
+@i.x1.iee[current] = 1.516000e-05
+@q.x1.q1[ib] = 7.976679e-08
+@q.x1.q1[ic] = 7.479024e-06
+@q.x1.q1[ie] = -7.55880e-06
+@q.x1.q1[is] = 9.960324e-12
+@q.x1.q2[ib] = 7.972817e-08
+@q.x1.q2[ic] = 7.475404e-06
+@q.x1.q2[ie] = -7.55514e-06
+@q.x1.q2[is] = 9.960343e-12
+@r.x1.r2[i] = -2.25414e-12
+@r.x1.rc1[i] = 7.479034e-06
+@r.x1.rc2[i] = 7.475414e-06
+@r.x1.re1[i] = 7.558791e-06
+@r.x1.re2[i] = 7.555132e-06
+@r.x1.ree[i] = -4.60767e-08
+@r.x1.ro1[i] = 2.088502e-06
+@r.x1.ro2[i] = 2.171722e-05
+@r.x1.rp[i] = 1.101322e-03
+@r1a[i] = -7.24802e-08
+@r1b[i] = -7.24802e-09
+@r2[i] = 2.067297e-06
+@r3[i] = -2.12053e-08
+@r4a[i] = -5.32377e-08
+@r4b[i] = -5.32377e-09
+v(1) = -7.24802e-05
+v(2) = -5.32377e-05
+v(3) = 2.067297e-03
+a$poly$e.x1.egnd#branch_1_0 = -2.13458e-06
+h.x1.hlim#branch = -4.17721e-15
+in = 0.000000e+00
+out = 0.000000e+00
+v.x1.vb#branch = -2.25414e-12
+v.x1.vc#branch = 8.998733e-12
+v.x1.ve#branch = 9.002867e-12
+v.x1.vlim#branch = 2.088502e-06
+v.x1.vln#branch = -4.00056e-11
+v.x1.vlp#branch = -3.99987e-11
+vcc = 1.000000e+01
+vcc#branch = -1.11628e-03
+vee = -1.00000e+01
+vee#branch = 1.116482e-03
+vin#branch = 0.000000e+00
+vout#branch = 2.067297e-06
+x1.6 = -2.25414e-07
+x1.7 = 2.171722e-03
+x1.8 = 2.171722e-03
+x1.9 = 0.000000e+00
+x1.10 = -6.07751e-01
+x1.11 = 9.960324e+00
+x1.12 = 9.960343e+00
+x1.13 = -5.93873e-01
+x1.14 = -5.93880e-01
+x1.53 = 9.000000e+00
+x1.54 = -9.00000e+00
+x1.90 = 2.088502e-03
+x1.91 = 4.000000e+01
+x1.92 = -4.00000e+01
+x1.99 = 0.000000e+00
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 71
+Zout_TAB
+zout = 8.251525e+02
+Zout_END
+ngspice-31 done
